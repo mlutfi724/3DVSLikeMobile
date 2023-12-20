@@ -10,7 +10,7 @@ public class PlayerRunState : PlayerBaseState
 
     public override void EnterState()
     {
-        Debug.Log("Enter run state!");
+        //Debug.Log("Enter run state!");
         Ctx.Animator.SetBool(Ctx.IsWalkingHash, true);
         Ctx.Animator.SetBool(Ctx.IsRunningHash, true);
     }

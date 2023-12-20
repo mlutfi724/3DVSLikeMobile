@@ -22,6 +22,7 @@ public class PlayerStateMachine : MonoBehaviour
 
     // variable to store player input values
 
+    private Vector2 _lastMovementInput;
     private Vector2 _currentMovementInput;
     private Vector3 _currentMovement;
     private Vector3 _currentRunMovement;
@@ -132,6 +133,9 @@ public class PlayerStateMachine : MonoBehaviour
     public float MoveSpeed
     { get { return _moveSpeed; } }
 
+    public Vector2 LastMovementInput
+    { get { return _lastMovementInput; } }
+
     public Vector2 CurrentMovementInput
     { get { return _currentMovementInput; } }
 
@@ -205,12 +209,14 @@ public class PlayerStateMachine : MonoBehaviour
     private void Start()
     {
         _characterController.Move(_appliedMovement * Time.deltaTime);
+        _lastMovementInput = new Vector2(0f, 1f); // shoot the projectile upward at the start of the game
     }
 
     // Update is called once per frame
     private void Update()
     {
         HandleRotation();
+        CalculateLastMovementVector();
         _currentState.UpdateStates();
 
         _cameraRelativeMovement = ConvertToCameraSpace(_appliedMovement);
@@ -271,6 +277,15 @@ public class PlayerStateMachine : MonoBehaviour
         _currentRunMovement.x = _currentMovementInput.x * _runMultiplier;
         _currentRunMovement.z = _currentMovementInput.y * _runMultiplier;
         _isMovementPressed = _currentMovementInput.x != _zero || _currentMovementInput.y != _zero;
+    }
+
+    private Vector2 CalculateLastMovementVector()
+    {
+        if (_isMovementPressed)
+        {
+            _lastMovementInput = _currentMovementInput;
+        }
+        return _lastMovementInput;
     }
 
     // callback handler function for jump buttons

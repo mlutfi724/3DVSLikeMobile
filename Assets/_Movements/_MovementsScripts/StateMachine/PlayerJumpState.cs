@@ -14,7 +14,7 @@ public class PlayerJumpState : PlayerBaseState, IRootState
 
     public override void EnterState()
     {
-        Debug.Log("Enter jump state!");
+        //Debug.Log("Enter jump state!");
         InitializeSubState();
         HandleJump();
     }
@@ -27,7 +27,7 @@ public class PlayerJumpState : PlayerBaseState, IRootState
 
     public override void ExitState()
     {
-        Debug.Log("Exit jump state!");
+        //Debug.Log("Exit jump state!");
         Ctx.Animator.SetBool(Ctx.IsJumpingHash, false);
         if (Ctx.IsJumpPressed)
         {

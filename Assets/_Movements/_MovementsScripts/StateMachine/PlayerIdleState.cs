@@ -10,7 +10,7 @@ public class PlayerIdleState : PlayerBaseState
 
     public override void EnterState()
     {
-        Debug.Log("Enter idle state!");
+        //Debug.Log("Enter idle state!");
         Ctx.Animator.SetBool(Ctx.IsWalkingHash, false);
         Ctx.Animator.SetBool(Ctx.IsRunningHash, false);
         Ctx.AppliedMovementX = 0f;
@@ -26,7 +26,7 @@ public class PlayerIdleState : PlayerBaseState
 
     public override void ExitState()
     {
-        Debug.Log("Exit idle state!");
+        //Debug.Log("Exit idle state!");
     }
 
     public override void InitializeSubState()

@@ -14,7 +14,7 @@ public class PlayerFallState : PlayerBaseState, IRootState
     {
         InitializeSubState();
         Ctx.Animator.SetBool(Ctx.IsFallingHash, true);
-        Debug.Log("Enter fall state!");
+        //Debug.Log("Enter fall state!");
     }
 
     public override void UpdateState()
@@ -25,7 +25,7 @@ public class PlayerFallState : PlayerBaseState, IRootState
 
     public override void ExitState()
     {
-        Debug.Log("Exit fall state!");
+        //Debug.Log("Exit fall state!");
         Ctx.Animator.SetBool(Ctx.IsFallingHash, false);
     }
 

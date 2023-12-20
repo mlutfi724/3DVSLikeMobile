@@ -21,7 +21,7 @@ public class PlayerGroundedState : PlayerBaseState, IRootState
     {
         InitializeSubState();
         HandleGravity();
-        Debug.Log("Enter grounded state!");
+        //Debug.Log("Enter grounded state!");
     }
 
     public override void UpdateState()
@@ -31,7 +31,7 @@ public class PlayerGroundedState : PlayerBaseState, IRootState
 
     public override void ExitState()
     {
-        Debug.Log("Exit grounded state!");
+        // Debug.Log("Exit grounded state!");
     }
 
     public override void InitializeSubState()
