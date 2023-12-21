@@ -17,7 +17,7 @@ public class SwordProjectileController : WeaponController
 
     private void SpawnProjectile()
     {
-        GameObject spawnedProjectile = Instantiate(WeaponPrefab);
+        GameObject spawnedProjectile = Instantiate(WeaponStatsData.WeaponPrefab);
         Vector3 lastPlayerMoveDirection = new Vector3(PlayerMovement.LastMovementInput.x, 0, PlayerMovement.LastMovementInput.y);
         spawnedProjectile.transform.position = transform.position; // assign the position to the parent transform.position
         spawnedProjectile.GetComponent<SwordProjectileBehaviour>().DirectionChecker(lastPlayerMoveDirection);

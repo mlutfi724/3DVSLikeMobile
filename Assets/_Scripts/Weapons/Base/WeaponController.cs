@@ -5,20 +5,17 @@ using UnityEngine;
 public class WeaponController : MonoBehaviour
 {
     [Header("Weapon Stats")]
-    [SerializeField] protected GameObject WeaponPrefab;
+    [SerializeField] protected WeaponScriptableObject WeaponStatsData;
 
-    [SerializeField] private float _damage;
-    public float Speed;
-    [SerializeField] private float _cooldownDuration;
-    private float _currentCooldown;
-    [SerializeField] private int _pierce;
     protected PlayerStateMachine PlayerMovement;
+
+    private float _currentCooldown;
 
     // Start is called before the first frame update
     protected virtual void Start()
     {
         PlayerMovement = FindObjectOfType<PlayerStateMachine>();
-        _currentCooldown = _cooldownDuration; // set the current coooldown to be the cooldown duration
+        _currentCooldown = WeaponStatsData.CooldownDuration; // set the current coooldown to be the cooldown duration
     }
 
     // Update is called once per frame
@@ -33,6 +30,6 @@ public class WeaponController : MonoBehaviour
 
     protected virtual void Attack()
     {
-        _currentCooldown = _cooldownDuration;
+        _currentCooldown = WeaponStatsData.CooldownDuration;
     }
 }
