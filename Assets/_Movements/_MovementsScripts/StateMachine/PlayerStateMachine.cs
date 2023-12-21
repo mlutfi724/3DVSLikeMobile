@@ -6,13 +6,12 @@ using UnityEngine.InputSystem;
 // This class is context for the state machine
 public class PlayerStateMachine : MonoBehaviour
 {
-    [SerializeField] private CharacterScriptableObject _characterData;
-
     // declare reference variables
 
     private CharacterController _characterController;
     private Animator _animator;
     private PlayerInput _playerInput; // note player input class must be generated from new input system in inspector
+    private PlayerStats _playerStats;
 
     // variables to store optimized setter/getter paramater IDs
 
@@ -145,12 +144,12 @@ public class PlayerStateMachine : MonoBehaviour
     private void Awake()
     {
         // assigning the character stats from the scriptable object
-        _moveSpeed = _characterData.MoveSpeed;
 
         // initially set reference variables
         _playerInput = new PlayerInput();
         _characterController = GetComponent<CharacterController>();
         _animator = GetComponent<Animator>();
+        _playerStats = GetComponent<PlayerStats>();
 
         // setup state
         _states = new PlayerStateFactory(this);
@@ -223,7 +222,7 @@ public class PlayerStateMachine : MonoBehaviour
         HandleRotation();
         CalculateLastMovementVector();
         _currentState.UpdateStates();
-
+        _moveSpeed = _playerStats.CurrentMoveSpeed;
         _cameraRelativeMovement = ConvertToCameraSpace(_appliedMovement);
         _characterController.Move(_cameraRelativeMovement * Time.deltaTime);
     }
@@ -259,9 +258,9 @@ public class PlayerStateMachine : MonoBehaviour
     {
         Vector3 positionToLookAt;
         // the change position our character should point to
-        positionToLookAt.x = _cameraRelativeMovement.x;
+        positionToLookAt.x = _currentMovement.x;
         positionToLookAt.y = _zero;
-        positionToLookAt.z = _cameraRelativeMovement.z;
+        positionToLookAt.z = _currentMovement.z;
         // the current rotation of our character
         Quaternion currentRotation = transform.rotation;
 

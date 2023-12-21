@@ -42,7 +42,7 @@ public class OrbitingWeaponBehaviour : MonoBehaviour
         // Reference the script from the collided collider and deal damage using TakeDamage()
         if (other.CompareTag("Enemy"))
         {
-            EnemyController enemy = other.GetComponent<EnemyController>();
+            EnemyStats enemy = other.GetComponent<EnemyStats>();
             enemy.EnemyTakeDamage(CurrentDamage); // Using CurrentDamage instead of WeaponData.Damage for applying any damage multiplier
             ReducePierce();
         }
@@ -67,6 +67,6 @@ public class OrbitingWeaponBehaviour : MonoBehaviour
 
     private void OrbitingPlayer()
     {
-        transform.RotateAround(_playerMovement.transform.position, Vector3.up, WeaponStatsData.Speed * Time.deltaTime);
+        transform.RotateAround(_playerMovement.transform.position, Vector3.up, CurrentSpeed * Time.deltaTime);
     }
 }

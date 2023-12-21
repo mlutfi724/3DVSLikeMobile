@@ -14,6 +14,6 @@ public class SwordProjectileBehaviour : ProjectileWeaponBehaviour
     protected override void Update()
     {
         base.Update();
-        transform.position += Direction * WeaponStatsData.Speed * Time.deltaTime;
+        transform.position += Direction * CurrentSpeed * Time.deltaTime;
     }
 }

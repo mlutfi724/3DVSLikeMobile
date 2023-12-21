@@ -182,6 +182,7 @@ GameObject:
   - component: {fileID: 6176408994333117456}
   - component: {fileID: 1940799824282446355}
   - component: {fileID: 2169747813146525076}
+  - component: {fileID: 1382887277}
   m_Layer: 0
   m_Name: Ghost
   m_TagString: Enemy
@@ -275,6 +276,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemyData: {fileID: 11400000, guid: 511e86c53c54cbe43ba9d685daa321f4, type: 2}
+  CurrentMoveSpeed: 0
+  CurrentHealth: 0
+  CurrentDamage: 0
 --- !u!114 &2169747813146525076
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -292,6 +296,18 @@ MonoBehaviour:
     ItemPrefab: {fileID: 9126642742975363503, guid: 601c9ff039e829a4fb09b104d21606b7,
       type: 3}
     DropRate: 100
+--- !u!114 &1382887277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1271364766124650679}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43542edffc96d25458b4b92c7f606b51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2229758413310184688
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,18 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
     [SerializeField] private CharacterScriptableObject _characterData;
+    [SerializeField] private float _weaponSpawnYPos;
 
     // Current Character Stats
 
-    private float _currentHealth;
-    private float _currentRecovery;
-    private float _currentMoveSpeed;
-    private float _currentMight;
-    private float _currentProjectileSpeed;
+    [HideInInspector] public float CurrentHealth;
+    [HideInInspector] public float CurrentRecovery;
+    [HideInInspector] public float CurrentMoveSpeed;
+    [HideInInspector] public float CurrentMight;
+    [HideInInspector] public float CurrentProjectileSpeed;
+    [HideInInspector] public float CurrentMagnetRadius;
+
+    // Spawned Weapon
+    public List<GameObject> SpawnedWeapons;
 
     // Experience and level of the player
     [Header("Experience/Level")]
@@ -40,11 +46,14 @@ public class PlayerStats : MonoBehaviour
 
     private void Awake()
     {
-        _currentHealth = _characterData.MaxHealth;
-        _currentRecovery = _characterData.Recovery;
-        _currentMoveSpeed = _characterData.MoveSpeed;
-        _currentMight = _characterData.Might;
-        _currentProjectileSpeed = _characterData.ProjectileSpeed;
+        CurrentHealth = _characterData.MaxHealth;
+        CurrentRecovery = _characterData.Recovery;
+        CurrentMoveSpeed = _characterData.MoveSpeed;
+        CurrentMight = _characterData.Might;
+        CurrentProjectileSpeed = _characterData.ProjectileSpeed;
+        CurrentMagnetRadius = _characterData.MagnetRadius;
+
+        SpawnWeaponController(_characterData.StartingWeapon);
     }
 
     private void Start()
@@ -54,6 +63,17 @@ public class PlayerStats : MonoBehaviour
     }
 
     private void Update()
+    {
+        HandleIFrame();
+        Recover();
+    }
+
+    private void PlayerDied()
+    {
+        Debug.Log("Player is dead!");
+    }
+
+    private void HandleIFrame()
     {
         if (_invincibilityTimer > 0)
         {
@@ -65,44 +85,38 @@ public class PlayerStats : MonoBehaviour
         }
     }
 
-    public void IncreaseExperience(int amount)
+    public void SpawnWeaponController(GameObject weaponController)
     {
-        Experience += amount;
-        LevelUpChecker();
+        // spawn the starting weapon
+        Vector3 weaponControllerPos = new Vector3(transform.position.x, transform.position.y + _weaponSpawnYPos, transform.position.z);
+        GameObject spawnedWeaponController = Instantiate(weaponController, weaponControllerPos, Quaternion.identity);
+        spawnedWeaponController.transform.SetParent(transform); // Set the weapon controller to be child of the player
+        SpawnedWeapons.Add(spawnedWeaponController); // add to the list of the spawned weapons
     }
 
-    public void PlayerTakeDamage(float dmg)
+    private void Recover()
     {
-        // if the player are not in IFrame state
-        if (!_isInvincible)
+        if (CurrentHealth < _characterData.MaxHealth)
         {
-            _currentHealth -= dmg;
+            CurrentHealth += CurrentRecovery * Time.deltaTime;
 
-            _invincibilityTimer = InvincibilityDuration;
-            _isInvincible = true;
-
-            if (_currentHealth <= 0)
+            if (CurrentHealth > _characterData.MaxHealth) // making sure the player health doesn't exceed max health
             {
-                PlayerDied();
+                CurrentHealth = _characterData.MaxHealth;
             }
         }
     }
 
-    private void PlayerDied()
-    {
-        Debug.Log("Player is dead!");
-    }
-
-    public void RestoreHealth(int amount)
+    public void RestoreHealth(float amount)
     {
         //Only heal the player if the current health is less than the max health
-        if (_currentHealth < _characterData.MaxHealth)
+        if (CurrentHealth < _characterData.MaxHealth)
         {
-            _currentHealth += amount;
+            CurrentHealth += amount;
             // makin sure the player's health doesn't exceed the Max health
-            if (_currentHealth > _characterData.MaxHealth)
+            if (CurrentHealth > _characterData.MaxHealth)
             {
-                _currentHealth = _characterData.MaxHealth;
+                CurrentHealth = _characterData.MaxHealth;
             }
         }
     }
@@ -124,6 +138,29 @@ public class PlayerStats : MonoBehaviour
                 }
             }
             ExperienceCap += ExperienceCapIncrease;
+        }
+    }
+
+    public void IncreaseExperience(int amount)
+    {
+        Experience += amount;
+        LevelUpChecker();
+    }
+
+    public void PlayerTakeDamage(float dmg)
+    {
+        // if the player are not in IFrame state
+        if (!_isInvincible)
+        {
+            CurrentHealth -= dmg;
+
+            _invincibilityTimer = InvincibilityDuration;
+            _isInvincible = true;
+
+            if (CurrentHealth <= 0)
+            {
+                PlayerDied();
+            }
         }
     }
 }

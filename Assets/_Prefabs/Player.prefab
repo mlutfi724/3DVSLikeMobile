@@ -3697,7 +3697,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _runMultiplier: 3
-  _moveSpeed: 3
   _gravity: -9.8
 --- !u!1 &5472989865668660013
 GameObject:

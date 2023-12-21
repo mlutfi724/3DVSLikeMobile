@@ -11,6 +11,7 @@ public class CharacterScriptableObject : ScriptableObject
     [SerializeField] private float _moveSpeed;
     [SerializeField] private float _might;
     [SerializeField] private float _projectileSpeed;
+    [SerializeField] private float _magnetRadius;
 
     // Properties
     public GameObject StartingWeapon
@@ -30,4 +31,7 @@ public class CharacterScriptableObject : ScriptableObject
 
     public float ProjectileSpeed
     { get { return _projectileSpeed; } private set { _projectileSpeed = value; } }
+
+    public float MagnetRadius
+    { get { return _magnetRadius; } private set { _magnetRadius = value; } }
 }

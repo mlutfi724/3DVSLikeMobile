@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90f1f0a5818b34b48840fac7def12487, type: 3}
   m_Name: SwordCharacter
   m_EditorClassIdentifier: 
-  _startingWeapon: {fileID: 0}
+  _startingWeapon: {fileID: 864782244234978683, guid: 471788deebdf71f41ba4b1769229bce1,
+    type: 3}
   _maxHealth: 1000
-  _recovery: 0
+  _recovery: 5
   _moveSpeed: 4
   _might: 0
   _projectileSpeed: 0
+  _magnetRadius: 1.5
