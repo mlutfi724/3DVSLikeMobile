@@ -43,8 +43,16 @@ public class OrbitingWeaponBehaviour : MonoBehaviour
         if (other.CompareTag("Enemy"))
         {
             EnemyController enemy = other.GetComponent<EnemyController>();
-            enemy.TakeDamage(CurrentDamage); // Using CurrentDamage instead of WeaponData.Damage for applying any damage multiplier
+            enemy.EnemyTakeDamage(CurrentDamage); // Using CurrentDamage instead of WeaponData.Damage for applying any damage multiplier
             ReducePierce();
+        }
+        else if (other.CompareTag("Prop"))
+        {
+            if (other.gameObject.TryGetComponent(out BreakableProps breakable))
+            {
+                breakable.PropsTakeDamage(CurrentDamage);
+                ReducePierce();
+            }
         }
     }
 

@@ -6,6 +6,8 @@ using UnityEngine.InputSystem;
 // This class is context for the state machine
 public class PlayerStateMachine : MonoBehaviour
 {
+    [SerializeField] private CharacterScriptableObject _characterData;
+
     // declare reference variables
 
     private CharacterController _characterController;
@@ -36,7 +38,7 @@ public class PlayerStateMachine : MonoBehaviour
 
     private float _rotationFactorPerFrame = 15.0f;
     [SerializeField] private float _runMultiplier = 3f;
-    [SerializeField] private float _moveSpeed = 3f;
+    private float _moveSpeed;
     private int _zero = 0;
 
     // gravity variables
@@ -142,6 +144,9 @@ public class PlayerStateMachine : MonoBehaviour
     // Awake is called earlier than Start in Unity's event life cycle
     private void Awake()
     {
+        // assigning the character stats from the scriptable object
+        _moveSpeed = _characterData.MoveSpeed;
+
         // initially set reference variables
         _playerInput = new PlayerInput();
         _characterController = GetComponent<CharacterController>();

@@ -178,9 +178,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1940799824282446349}
   - component: {fileID: 961019601153102160}
-  - component: {fileID: 1940799824282446355}
   - component: {fileID: 1940799824282446354}
   - component: {fileID: 6176408994333117456}
+  - component: {fileID: 1940799824282446355}
+  - component: {fileID: 2169747813146525076}
   m_Layer: 0
   m_Name: Ghost
   m_TagString: Enemy
@@ -225,19 +226,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
---- !u!114 &1940799824282446355
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1271364766124650679}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 68c4069bee362504abcf7bdeae2133dc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _enemyData: {fileID: 11400000, guid: 511e86c53c54cbe43ba9d685daa321f4, type: 2}
 --- !u!195 &1940799824282446354
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -252,7 +240,7 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 1
+  m_StoppingDistance: 0.5
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -274,6 +262,36 @@ CapsuleCollider:
   m_Height: 0.9280766
   m_Direction: 1
   m_Center: {x: -0.0032691956, y: 0.54596394, z: 0}
+--- !u!114 &1940799824282446355
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1271364766124650679}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68c4069bee362504abcf7bdeae2133dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _enemyData: {fileID: 11400000, guid: 511e86c53c54cbe43ba9d685daa321f4, type: 2}
+--- !u!114 &2169747813146525076
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1271364766124650679}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da5872adaacea54094c90b04f3494d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DropsList:
+  - Name: Blue Gem
+    ItemPrefab: {fileID: 9126642742975363503, guid: 601c9ff039e829a4fb09b104d21606b7,
+      type: 3}
+    DropRate: 100
 --- !u!1 &2229758413310184688
 GameObject:
   m_ObjectHideFlags: 0

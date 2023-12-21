@@ -16,14 +16,14 @@ public class WeaponScriptableObject : ScriptableObject
     { get { return _weaponPrefab; } private set { _weaponPrefab = value; } }
 
     public float Damage
-    { get { return _damage; } set { _damage = value; } }
+    { get { return _damage; } private set { _damage = value; } }
 
     public float Speed
-    { get { return _speed; } set { _speed = value; } }
+    { get { return _speed; } private set { _speed = value; } }
 
     public float CooldownDuration
-    { get { return _cooldownDuration; } set { _cooldownDuration = value; } }
+    { get { return _cooldownDuration; } private set { _cooldownDuration = value; } }
 
     public int Pierce
-    { get { return _pierce; } set { _pierce = value; } }
+    { get { return _pierce; } private set { _pierce = value; } }
 }

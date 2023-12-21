@@ -40,17 +40,26 @@ public class EnemyController : MonoBehaviour
         _enemyAgent.destination = _playerTransform.position;
     }
 
-    public void TakeDamage(float damage)
+    public void EnemyTakeDamage(float damage)
     {
         _currentHealth -= damage;
         if (_currentHealth <= 0)
         {
-            Die();
+            EnemyDied();
         }
     }
 
-    public void Die()
+    public void EnemyDied()
     {
         Destroy(gameObject);
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            PlayerStats player = other.gameObject.GetComponent<PlayerStats>();
+            player.PlayerTakeDamage(_currentDamage);
+        }
     }
 }

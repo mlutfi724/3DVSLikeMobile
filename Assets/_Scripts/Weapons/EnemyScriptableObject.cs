@@ -10,11 +10,11 @@ public class EnemyScriptableObject : ScriptableObject
     [SerializeField] private float _damage;
 
     public float MoveSpeed
-    { get { return _moveSpeed; } set { _moveSpeed = value; } }
+    { get { return _moveSpeed; } private set { _moveSpeed = value; } }
 
     public float MaxHealth
-    { get { return _maxHealth; } set { _maxHealth = value; } }
+    { get { return _maxHealth; } private set { _maxHealth = value; } }
 
     public float Damage
-    { get { return _damage; } set { _damage = value; } }
+    { get { return _damage; } private set { _damage = value; } }
 }
