@@ -6,6 +6,11 @@ public class RotatePickupObjects : MonoBehaviour
 {
     [SerializeField] private float rotateSpeed;
 
+    private void Start()
+    {
+        transform.position = new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z);
+    }
+
     private void Update()
     {
         //Make sure you are using the right parameters here

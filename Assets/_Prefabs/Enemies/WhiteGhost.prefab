@@ -115,7 +115,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: d11e6205c7cc9470aacd9fde3100bfe2, type: 2}
+  - {fileID: 2100000, guid: 05822c4a374d85d41b1a644c2d94e573, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -184,7 +184,7 @@ GameObject:
   - component: {fileID: 2169747813146525076}
   - component: {fileID: 1382887277}
   m_Layer: 0
-  m_Name: Ghost
+  m_Name: WhiteGhost
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -260,9 +260,9 @@ CapsuleCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.28096056
-  m_Height: 0.9280766
+  m_Height: 1.4119248
   m_Direction: 1
-  m_Center: {x: -0.0032691956, y: 0.54596394, z: 0}
+  m_Center: {x: -0.0032691956, y: 0.30403984, z: 0}
 --- !u!114 &1940799824282446355
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -279,6 +279,7 @@ MonoBehaviour:
   CurrentMoveSpeed: 0
   CurrentHealth: 0
   CurrentDamage: 0
+  DespawnDistance: 20
 --- !u!114 &2169747813146525076
 MonoBehaviour:
   m_ObjectHideFlags: 0
