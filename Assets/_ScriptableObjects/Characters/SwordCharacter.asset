@@ -17,6 +17,6 @@ MonoBehaviour:
   _maxHealth: 1000
   _recovery: 5
   _moveSpeed: 4
-  _might: 0
+  _might: 1
   _projectileSpeed: 0
   _magnetRadius: 1.5

@@ -13,8 +13,13 @@ public class ShieldController : WeaponController
     protected override void Attack()
     {
         base.Attack();
+        SpawnShield();
+    }
+
+    private void SpawnShield()
+    {
         GameObject spawnedShield = Instantiate(WeaponStatsData.WeaponPrefab);
-        //spawnedShield.transform.position = transform.position;
-        //spawnedShield.transform.parent = transform;
+        spawnedShield.transform.position = transform.position;
+        spawnedShield.transform.parent = transform;
     }
 }

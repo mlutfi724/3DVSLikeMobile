@@ -64,6 +64,10 @@ public class EnemyStats : MonoBehaviour
 
     private void OnDestroy()
     {
+        if (!gameObject.scene.isLoaded) // stops the spawning error from appearing when stop play mode
+        {
+            return;
+        }
         EnemySpawner enemySpawner = FindObjectOfType<EnemySpawner>();
         enemySpawner.OnEnemyKilled();
     }

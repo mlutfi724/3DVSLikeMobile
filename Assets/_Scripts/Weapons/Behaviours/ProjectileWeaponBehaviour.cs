@@ -9,7 +9,6 @@ public class ProjectileWeaponBehaviour : MonoBehaviour
 
     protected Vector3 Direction;
     [SerializeField] private float _destroyAfterSeconds;
-    [SerializeField] private float _rotatingSpeed;
 
     //Current stats
 
@@ -32,14 +31,14 @@ public class ProjectileWeaponBehaviour : MonoBehaviour
         Destroy(gameObject, _destroyAfterSeconds);
     }
 
-    protected virtual void Update()
-    {
-        transform.Rotate(Vector3.right * _rotatingSpeed * Time.deltaTime); // rotating the object
-    }
-
     public void DirectionChecker(Vector3 dir)
     {
         Direction = dir;
+    }
+
+    public float GetCurrentDamage()
+    {
+        return CurrentDamage *= FindObjectOfType<PlayerStats>().CurrentMight;
     }
 
     protected virtual void OnTriggerEnter(Collider other)
@@ -48,14 +47,14 @@ public class ProjectileWeaponBehaviour : MonoBehaviour
         if (other.CompareTag("Enemy"))
         {
             EnemyStats enemy = other.GetComponent<EnemyStats>();
-            enemy.EnemyTakeDamage(CurrentDamage); // Using CurrentDamage instead of WeaponData.Damage for applying any damage multiplier
+            enemy.EnemyTakeDamage(GetCurrentDamage()); // Using CurrentDamage instead of WeaponData.Damage for applying any damage multiplier
             ReducePierce();
         }
         else if (other.CompareTag("Prop"))
         {
             if (other.gameObject.TryGetComponent(out BreakableProps breakable))
             {
-                breakable.PropsTakeDamage(CurrentDamage);
+                breakable.PropsTakeDamage(GetCurrentDamage());
                 ReducePierce();
             }
         }

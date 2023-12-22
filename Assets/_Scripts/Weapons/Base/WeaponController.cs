@@ -5,7 +5,7 @@ using UnityEngine;
 public class WeaponController : MonoBehaviour
 {
     [Header("Weapon Stats")]
-    [SerializeField] protected WeaponScriptableObject WeaponStatsData;
+    public WeaponScriptableObject WeaponStatsData;
 
     protected PlayerStateMachine PlayerMovement;
 

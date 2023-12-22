@@ -16,6 +16,10 @@ public class DropRateManager : MonoBehaviour
 
     private void OnDestroy()
     {
+        if (!gameObject.scene.isLoaded) // stops the spawning error from appearing when stop play mode
+        {
+            return;
+        }
         float randomNumber = Random.Range(0f, 100f);
         List<Drops> possibleDrops = new List<Drops>();
         foreach (Drops rate in DropsList)

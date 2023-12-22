@@ -10,6 +10,10 @@ public class WeaponScriptableObject : ScriptableObject
     [SerializeField] private float _speed;
     [SerializeField] private float _cooldownDuration;
     [SerializeField] private int _pierce; // the amount of time the weapon can hit enemy before get destroyed
+    [SerializeField] private int _level;
+    [SerializeField] private Sprite _icon;
+    [SerializeField] private GameObject _nextLevelPrefab; // The prefab of the next level i.e. what the object becomes when it levels up
+                                                          // Not to be confused with the prefab to be spawned at the next level
 
     // properties
     public GameObject WeaponPrefab
@@ -26,4 +30,13 @@ public class WeaponScriptableObject : ScriptableObject
 
     public int Pierce
     { get { return _pierce; } private set { _pierce = value; } }
+
+    public int Level
+    { get { return _level; } private set { _level = value; } }
+
+    public Sprite Icon //not mean to be modified in game [only in editor]
+    { get { return _icon; } private set { _icon = value; } }
+
+    public GameObject NextLevelPrefab
+    { get { return _nextLevelPrefab; } private set { _nextLevelPrefab = value; } }
 }
