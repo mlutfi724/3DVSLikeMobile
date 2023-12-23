@@ -12,11 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90f1f0a5818b34b48840fac7def12487, type: 3}
   m_Name: SwordCharacter
   m_EditorClassIdentifier: 
-  _startingWeapon: {fileID: 864782244234978683, guid: 471788deebdf71f41ba4b1769229bce1,
-    type: 3}
+  _characterIcon: {fileID: 21300000, guid: 832bdf046d821514ca1eb1e48c2772f6, type: 3}
+  _characterName: Curious Doggos
   _maxHealth: 1000
   _recovery: 5
   _moveSpeed: 4
   _might: 1
   _projectileSpeed: 0
-  _magnetRadius: 3
+  _magnetRadius: 2
+  _startingWeapon: {fileID: 864782244234978683, guid: 471788deebdf71f41ba4b1769229bce1,
+    type: 3}

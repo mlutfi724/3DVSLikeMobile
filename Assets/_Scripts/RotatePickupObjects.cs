@@ -20,7 +20,6 @@ public class RotatePickupObjects : MonoBehaviour
 
     private void Update()
     {
-        //Make sure you are using the right parameters here
         transform.Rotate(Vector3.up, rotateSpeed * Time.deltaTime, 0);
 
         if (_isPulled)
@@ -39,8 +38,9 @@ public class RotatePickupObjects : MonoBehaviour
 
     private void PulledToPlayer()
     {
-        Vector3 forceDirection = (transform.position - _player.transform.position).normalized;
-        _objectRb.AddForce(-forceDirection * _pullSpeed);
+        Vector3 forceDirection = (_player.transform.position - transform.position).normalized;
+        _objectRb.AddForce(forceDirection * _pullSpeed);
+        Destroy(gameObject, 3f);
     }
 
     //Vector3 forceDirection = (transform.position - otherRb.transform.position).normalized;

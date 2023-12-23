@@ -10,12 +10,131 @@ public class PlayerStats : MonoBehaviour
 
     // Current Character Stats
 
-    [HideInInspector] public float CurrentHealth;
-    [HideInInspector] public float CurrentRecovery;
-    [HideInInspector] public float CurrentMoveSpeed;
-    [HideInInspector] public float CurrentMight;
-    [HideInInspector] public float CurrentProjectileSpeed;
-    [HideInInspector] public float CurrentMagnetRadius;
+    private float _currentHealth;
+    private float _currentRecovery;
+    private float _currentMoveSpeed;
+    private float _currentMight;
+    private float _currentProjectileSpeed;
+    private float _currentMagnetRadius;
+
+    #region Current Stats Properties
+
+    public float CurrentHealth
+    {
+        get { return _currentHealth; }
+        set
+        {
+            // check if the value has changed
+            if (_currentHealth != value)
+            {
+                // Update the real time value of the stat
+                _currentHealth = value;
+                if (GameManager.instance != null)
+                {
+                    GameManager.instance.CurrentHealthDisplay.text = "Health: " + _currentHealth;
+                }
+                // Add any additional logic here that needs to be executed when the value changes
+            }
+        }
+    }
+
+    public float CurrentRecovery
+    {
+        get { return _currentRecovery; }
+        set
+        {
+            // check if the value has changed
+            if (_currentRecovery != value)
+            {
+                // Update the real time value of the stat
+                _currentRecovery = value;
+                if (GameManager.instance != null)
+                {
+                    GameManager.instance.CurrentRecoveryDisplay.text = "Recovery: " + _currentRecovery;
+                }
+                // Add any additional logic here that needs to be executed when the value changes
+            }
+        }
+    }
+
+    public float CurrentMoveSpeed
+    {
+        get { return _currentMoveSpeed; }
+        set
+        {
+            // check if the value has changed
+            if (_currentMoveSpeed != value)
+            {
+                // Update the real time value of the stat
+                _currentMoveSpeed = value;
+                if (GameManager.instance != null)
+                {
+                    GameManager.instance.CurrentMoveSpeedDisplay.text = "Move Speed: " + _currentMoveSpeed;
+                }
+
+                // Add any additional logic here that needs to be executed when the value changes
+            }
+        }
+    }
+
+    public float CurrentMight
+    {
+        get { return _currentMight; }
+        set
+        {
+            // check if the value has changed
+            if (_currentMight != value)
+            {
+                // Update the real time value of the stat
+                _currentMight = value;
+                if (GameManager.instance != null)
+                {
+                    GameManager.instance.CurrentMightDisplay.text = "Might: " + _currentMight;
+                }
+                // Add any additional logic here that needs to be executed when the value changes
+            }
+        }
+    }
+
+    public float CurrentProjectileSpeed
+    {
+        get { return _currentProjectileSpeed; }
+        set
+        {
+            // check if the value has changed
+            if (_currentProjectileSpeed != value)
+            {
+                // Update the real time value of the stat
+                _currentProjectileSpeed = value;
+                if (GameManager.instance != null)
+                {
+                    GameManager.instance.CurrentProjectileSpeedDisplay.text = "Projectile Speed: " + _currentProjectileSpeed;
+                }
+                // Add any additional logic here that needs to be executed when the value changes
+            }
+        }
+    }
+
+    public float CurrentMagnetRadius
+    {
+        get { return _currentMagnetRadius; }
+        set
+        {
+            // check if the value has changed
+            if (_currentMagnetRadius != value)
+            {
+                // Update the real time value of the stat
+                _currentMagnetRadius = value;
+                if (GameManager.instance != null)
+                {
+                    GameManager.instance.CurrentMagnetDisplay.text = "Magnet: " + _currentMagnetRadius;
+                }
+                // Add any additional logic here that needs to be executed when the value changes
+            }
+        }
+    }
+
+    #endregion Current Stats Properties
 
     // Experience and level of the player
     [Header("Experience/Level")]
@@ -69,6 +188,15 @@ public class PlayerStats : MonoBehaviour
     {
         // initialize the experience cap as the first experience cap increase
         ExperienceCap = LevelRanges[0].ExperienceCapIncrease;
+
+        GameManager.instance.CurrentHealthDisplay.text = "Health: " + _currentHealth;
+        GameManager.instance.CurrentRecoveryDisplay.text = "Recovery: " + _currentRecovery;
+        GameManager.instance.CurrentMoveSpeedDisplay.text = "Move Speed: " + _currentMoveSpeed;
+        GameManager.instance.CurrentMightDisplay.text = "Might: " + _currentMight;
+        GameManager.instance.CurrentProjectileSpeedDisplay.text = "Projectile Speed: " + _currentProjectileSpeed;
+        GameManager.instance.CurrentMagnetDisplay.text = "Magnet: " + _currentMagnetRadius;
+
+        GameManager.instance.AssignChosenCharacterUI(_characterData);
     }
 
     private void Update()
@@ -77,9 +205,14 @@ public class PlayerStats : MonoBehaviour
         Recover();
     }
 
-    private void PlayerDied()
+    public void PlayerDied()
     {
-        Debug.Log("Player is dead!");
+        if (!GameManager.instance.IsGameOver)
+        {
+            GameManager.instance.AssignLevelReachedUI(Level);
+            GameManager.instance.AssignChosenWeaponAndPassiveItemsUI(_inventory.WeaponUISlots, _inventory.PassiveItemUISlots);
+            GameManager.instance.GameOver();
+        }
     }
 
     private void HandleIFrame()

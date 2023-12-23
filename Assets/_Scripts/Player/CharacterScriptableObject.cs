@@ -5,13 +5,15 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "CharacterScriptableObject", menuName = "ScriptableObjects/Character")]
 public class CharacterScriptableObject : ScriptableObject
 {
-    [SerializeField] private GameObject _startingWeapon;
+    [SerializeField] private Sprite _characterIcon;
+    [SerializeField] private string _characterName;
     [SerializeField] private float _maxHealth;
     [SerializeField] private float _recovery;
     [SerializeField] private float _moveSpeed;
     [SerializeField] private float _might;
     [SerializeField] private float _projectileSpeed;
     [SerializeField] private float _magnetRadius;
+    [SerializeField] private GameObject _startingWeapon;
 
     // Properties
     public GameObject StartingWeapon
@@ -34,4 +36,10 @@ public class CharacterScriptableObject : ScriptableObject
 
     public float MagnetRadius
     { get { return _magnetRadius; } private set { _magnetRadius = value; } }
+
+    public Sprite CharacterIcon
+    { get { return _characterIcon; } private set { _characterIcon = value; } }
+
+    public string CharacterName
+    { get { return _characterName; } private set { _characterName = value; } }
 }
