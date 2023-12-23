@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayerStats : MonoBehaviour
 {
     [SerializeField] private CharacterScriptableObject _characterData;
-    [SerializeField] private float _weaponSpawnYPos;
+    [SerializeField] public float WeaponSpawnYPos = 0.5f;
 
     // Current Character Stats
 
@@ -104,7 +104,7 @@ public class PlayerStats : MonoBehaviour
         }
 
         // spawn the starting weapon
-        Vector3 weaponControllerPos = new Vector3(transform.position.x, transform.position.y + _weaponSpawnYPos, transform.position.z);
+        Vector3 weaponControllerPos = new Vector3(transform.position.x, transform.position.y + WeaponSpawnYPos, transform.position.z);
         GameObject spawnedWeaponController = Instantiate(weaponController, weaponControllerPos, Quaternion.identity);
         spawnedWeaponController.transform.SetParent(transform); // Set the weapon controller to be child of the player
         _inventory.AddWeapon(WeaponIndex, spawnedWeaponController.GetComponent<WeaponController>()); // Add the weapon to it's inventory slot

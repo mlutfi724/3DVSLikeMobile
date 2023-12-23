@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class ShieldOrbitingBehaviour : AreaWeaponBehaviour
 {
-    [SerializeField] private float _yOffset = 0.5f;
     private Vector3 orbitPosition;
 
     // Start is called before the first frame update
@@ -34,7 +33,7 @@ public class ShieldOrbitingBehaviour : AreaWeaponBehaviour
         float z = Player.transform.position.z + Mathf.Sin(angle) * 2f; // You can adjust the radius of the orbit
         float y = Player.transform.position.y;
 
-        return new Vector3(x, y + _yOffset, z);
+        return new Vector3(x, y + Player.WeaponSpawnYPos, z);
     }
 
     private void OrbitingPlayer()
