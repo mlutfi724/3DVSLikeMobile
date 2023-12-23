@@ -19,4 +19,4 @@ MonoBehaviour:
   _moveSpeed: 4
   _might: 1
   _projectileSpeed: 0
-  _magnetRadius: 1.5
+  _magnetRadius: 3

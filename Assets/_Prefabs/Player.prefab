@@ -1,5 +1,64 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &183529115
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 183529116}
+  - component: {fileID: 183529118}
+  - component: {fileID: 183529117}
+  m_Layer: 0
+  m_Name: Collector
+  m_TagString: Collector
+  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &183529116
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 183529115}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 9048039884084841819}
+  m_RootOrder: 26
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &183529118
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 183529115}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &183529117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 183529115}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08968d50266a4e14c85015637008d99d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PullSpeed: 300
 --- !u!1 &35608134607472953
 GameObject:
   m_ObjectHideFlags: 0
@@ -3598,6 +3657,8 @@ GameObject:
   - component: {fileID: 1376724449304584225}
   - component: {fileID: 4101561656732558918}
   - component: {fileID: 4101561656732558971}
+  - component: {fileID: 1902340216014888401}
+  - component: {fileID: 1902340216014888405}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -3643,6 +3704,7 @@ Transform:
   - {fileID: 4950571442981021924}
   - {fileID: 4611609504445460401}
   - {fileID: 5904897269050072305}
+  - {fileID: 183529116}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3698,6 +3760,87 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _runMultiplier: 3
   _gravity: -9.8
+--- !u!114 &1902340216014888401
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5461249580239126344}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3540f21bf033c8441847caccda516095, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _characterData: {fileID: 11400000, guid: 6457c30232671f142948012ba4773d0a, type: 2}
+  WeaponSpawnYPos: 0.5
+  CurrentHealth: 0
+  CurrentRecovery: 0
+  CurrentMoveSpeed: 0
+  CurrentMight: 0
+  CurrentProjectileSpeed: 0
+  CurrentMagnetRadius: 0
+  Experience: 0
+  Level: 1
+  ExperienceCap: 0
+  LevelRanges:
+  - StartLevel: 1
+    EndLevel: 5
+    ExperienceCapIncrease: 100
+  - StartLevel: 6
+    EndLevel: 10
+    ExperienceCapIncrease: 200
+  - StartLevel: 11
+    EndLevel: 15
+    ExperienceCapIncrease: 300
+  - StartLevel: 16
+    EndLevel: 20
+    ExperienceCapIncrease: 400
+  InvincibilityDuration: 0.5
+  WeaponIndex: 0
+  PassiveItemIndex: 0
+  SecondWeaponTest: {fileID: 1764259057399041569, guid: 2055dcf3cf7c8074bbaf674d4f676ef0,
+    type: 3}
+  FirstPassiveItemTest: {fileID: 2550449084889109787, guid: 73963f84b0ed1f641aae3ecb85b5d089,
+    type: 3}
+  SecondPassiveItemTest: {fileID: 3480839410743741410, guid: cee30cda82b1972469affc6ff96e53f6,
+    type: 3}
+--- !u!114 &1902340216014888405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5461249580239126344}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d49ae1e8237a81349b5edc6ecf90038e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WeaponSlots:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  WeaponLevels: 000000000000000000000000000000000000000000000000
+  WeaponUISlots:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  PassiveItemSlots:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  PassiveItemLevels: 000000000000000000000000000000000000000000000000
+  PassiveItemUISlots:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &5472989865668660013
 GameObject:
   m_ObjectHideFlags: 0

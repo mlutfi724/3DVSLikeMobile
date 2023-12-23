@@ -6,7 +6,7 @@ public class PlayerCollector : MonoBehaviour
 {
     private PlayerStats _playerStats;
     private SphereCollider _playerCollectorCollider;
-    public float PullSpeed;
+    //public float PullSpeed;
 
     private void Start()
     {
@@ -25,9 +25,10 @@ public class PlayerCollector : MonoBehaviour
         if (other.gameObject.TryGetComponent(out ICollectible collectible))
         {
             // Pulling pickup items towards the player
-            Rigidbody otherRb = other.gameObject.GetComponent<Rigidbody>();
-            Vector3 forceDirection = (transform.position - otherRb.transform.position).normalized;
-            otherRb.AddForce(forceDirection * PullSpeed);
+
+            //Rigidbody otherRb = other.gameObject.GetComponent<Rigidbody>();
+            //Vector3 forceDirection = (transform.position - otherRb.transform.position).normalized;
+            //otherRb.AddForce(forceDirection * PullSpeed);
 
             // if it has the interface then execute the collect function
             collectible.Collect();
