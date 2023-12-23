@@ -4,21 +4,42 @@ using UnityEngine;
 
 public class ShieldOrbitingBehaviour : AreaWeaponBehaviour
 {
+    [SerializeField] private float _yOffset = 0.5f;
+    private Vector3 orbitPosition;
+
     // Start is called before the first frame update
     protected override void Start()
     {
         Player = FindObjectOfType<PlayerStats>();
         base.Start();
-        transform.position = new Vector3(Player.transform.position.x + 2f, Player.transform.position.y + 0.7f, Player.transform.position.z);
     }
 
     private void Update()
     {
+        // Calculate the desired position in a circular orbit
+        orbitPosition = CalculateOrbitPosition();
+
+        // Set the shield's position to the calculated orbit position
+        transform.position = orbitPosition;
+
+        // Rotate the object around the player
         OrbitingPlayer();
+    }
+
+    private Vector3 CalculateOrbitPosition()
+    {
+        // Calculate the desired position in a circular orbit
+        float angle = Time.time * CurrentSpeed;
+        float x = Player.transform.position.x + Mathf.Cos(angle) * 2f; // You can adjust the radius of the orbit
+        float z = Player.transform.position.z + Mathf.Sin(angle) * 2f; // You can adjust the radius of the orbit
+        float y = Player.transform.position.y;
+
+        return new Vector3(x, y + _yOffset, z);
     }
 
     private void OrbitingPlayer()
     {
+        // Rotate the shield around the player
         transform.RotateAround(Player.transform.position, Vector3.up, CurrentSpeed * Time.deltaTime);
     }
 }
