@@ -9,7 +9,6 @@ public class ShieldOrbitingBehaviour : AreaWeaponBehaviour
     // Start is called before the first frame update
     protected override void Start()
     {
-        Player = FindObjectOfType<PlayerStats>();
         base.Start();
     }
 

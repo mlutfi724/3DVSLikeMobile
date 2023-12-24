@@ -12,14 +12,22 @@ public class PlayerStats : MonoBehaviour
     public GameObject SecondWeaponTest;
     public GameObject FirstPassiveItemTest, SecondPassiveItemTest;
     private InventoryManager _inventory;
-    private Animator _animator;
     public int WeaponIndex;
     public int PassiveItemIndex;
+
+    [HideInInspector] public Animator Animator;
 
     // Hash for animator
 
     private int _isAttackHash;
+
+    public int IsAttackHash
+    { get { return _isAttackHash; } }
+
     private int _isHitHash;
+
+    public int IsHitHash
+    { get { return _isHitHash; } }
 
     // Current Character Stats
 
@@ -190,7 +198,7 @@ public class PlayerStats : MonoBehaviour
 
         _inventory = GetComponent<InventoryManager>();
 
-        _animator = GetComponent<Animator>();
+        Animator = GetComponent<Animator>();
 
         // set the parameter hash
         _isAttackHash = Animator.StringToHash("isAttack");
@@ -246,7 +254,7 @@ public class PlayerStats : MonoBehaviour
         }
         else if (_isInvincible) // if the invincibility timer reaches 0 and currently still isInvincible
         {
-            _animator.SetBool(_isHitHash, false);
+            Animator.SetBool(_isHitHash, false);
             _isInvincible = false;
         }
     }
@@ -368,7 +376,7 @@ public class PlayerStats : MonoBehaviour
             _isInvincible = true;
 
             // Handle hit animation
-            _animator.SetBool(_isHitHash, true);
+            Animator.SetBool(_isHitHash, true);
 
             if (CurrentHealth <= 0)
             {

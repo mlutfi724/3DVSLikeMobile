@@ -20,5 +20,5 @@ MonoBehaviour:
   _might: 1
   _projectileSpeed: 0
   _magnetRadius: 2
-  _startingWeapon: {fileID: 864782244234978683, guid: 471788deebdf71f41ba4b1769229bce1,
+  _startingWeapon: {fileID: 161597117012683845, guid: 7572cab50b983974f8ee68449271496c,
     type: 3}
