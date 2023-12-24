@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: PurpleGhostEnemy
   m_EditorClassIdentifier: 
   _moveSpeed: 2
-  _maxHealth: 15
+  _maxHealth: 30
   _damage: 40

@@ -47,7 +47,7 @@ public class ProjectileWeaponBehaviour : MonoBehaviour
         if (other.CompareTag("Enemy"))
         {
             EnemyStats enemy = other.GetComponent<EnemyStats>();
-            enemy.EnemyTakeDamage(GetCurrentDamage()); // Using CurrentDamage instead of WeaponData.Damage for applying any damage multiplier
+            enemy.EnemyTakeDamage(GetCurrentDamage(), transform.position); // Using CurrentDamage instead of WeaponData.Damage for applying any damage multiplier
             ReducePierce();
         }
         else if (other.CompareTag("Prop"))

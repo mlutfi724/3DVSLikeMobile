@@ -18,7 +18,7 @@ MonoBehaviour:
   _weaponPrefab: {fileID: 7598368534864682059, guid: 2a7ced9cb4e084b4187ef5a535b3574a,
     type: 3}
   _damage: 3
-  _speed: 10
+  _speed: 20
   _cooldownDuration: 1.5
   _pierce: 1
   _level: 2

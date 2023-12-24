@@ -12,6 +12,7 @@ public class EnemyStats : MonoBehaviour
 
     public float DespawnDistance = 20f;
     private Transform _playerTransform;
+    private EnemyChasing _enemyChasing;
 
     private void Awake()
     {
@@ -23,6 +24,7 @@ public class EnemyStats : MonoBehaviour
     private void Start()
     {
         _playerTransform = FindObjectOfType<PlayerStats>().transform;
+        _enemyChasing = GetComponent<EnemyChasing>();
     }
 
     private void Update()
@@ -33,9 +35,18 @@ public class EnemyStats : MonoBehaviour
         }
     }
 
-    public void EnemyTakeDamage(float damage)
+    public void EnemyTakeDamage(float damage, Vector3 sourcePosition, float knockbackForce = 5f, float knockbackDuration = 0.2f)
     {
         CurrentHealth -= damage;
+
+        //Apply knockback if it is not zero.
+        if (knockbackForce > 0)
+        {
+            // gets the direction of the knockback
+            Vector3 dir = transform.position - sourcePosition;
+            _enemyChasing.Knockback(dir.normalized * knockbackForce, knockbackDuration);
+        }
+
         if (CurrentHealth <= 0)
         {
             EnemyDied();
