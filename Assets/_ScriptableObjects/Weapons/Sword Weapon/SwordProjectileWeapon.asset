@@ -19,7 +19,7 @@ MonoBehaviour:
     type: 3}
   _damage: 5
   _speed: 20
-  _cooldownDuration: 3
+  _cooldownDuration: 1
   _pierce: 1
   _level: 1
   _nextLevelPrefab: {fileID: 864782244234978683, guid: 88f854a91e8c11d44a42f7abefef30ae,
