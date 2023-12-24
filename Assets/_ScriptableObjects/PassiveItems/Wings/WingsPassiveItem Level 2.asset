@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12723653d7c5de247b4d655d3012c60f, type: 3}
   m_Name: WingsPassiveItem Level 2
   m_EditorClassIdentifier: 
+  _icon: {fileID: 21300000, guid: 6f6648c32a819be4a87ef3bad2807bad, type: 3}
+  _passiveItemName: Boots Level 2
+  _passiveItemDescription: 'Increase 75% move speed '
   _multiplier: 75
   _level: 2
-  _icon: {fileID: 21300000, guid: 6f6648c32a819be4a87ef3bad2807bad, type: 3}
   _nextLevelPrefab: {fileID: 0}

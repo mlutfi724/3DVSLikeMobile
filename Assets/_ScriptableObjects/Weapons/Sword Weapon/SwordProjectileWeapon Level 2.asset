@@ -12,12 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eac2e5888fef3d94a8334994115887f4, type: 3}
   m_Name: SwordProjectileWeapon Level 2
   m_EditorClassIdentifier: 
+  _icon: {fileID: 21300000, guid: 158be32ff2ccad14e8831bd617f89478, type: 3}
+  _weaponName: Sword Projectile Level 2
+  _weaponDescription: Increasing the fire rate by 50%
   _weaponPrefab: {fileID: 7598368534864682059, guid: 2a7ced9cb4e084b4187ef5a535b3574a,
     type: 3}
-  _damage: 5
-  _speed: 20
-  _cooldownDuration: 1
-  _pierce: 2
+  _damage: 3
+  _speed: 10
+  _cooldownDuration: 1.5
+  _pierce: 1
   _level: 2
-  _icon: {fileID: 21300000, guid: 158be32ff2ccad14e8831bd617f89478, type: 3}
   _nextLevelPrefab: {fileID: 0}

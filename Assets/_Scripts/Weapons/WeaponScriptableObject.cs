@@ -5,13 +5,15 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "WeaponScriptableObject", menuName = "ScriptableObjects/Weapon")]
 public class WeaponScriptableObject : ScriptableObject
 {
+    [SerializeField] private Sprite _icon;
+    [SerializeField] private string _weaponName;
+    [SerializeField] private string _weaponDescription;
     [SerializeField] private GameObject _weaponPrefab;
     [SerializeField] private float _damage;
     [SerializeField] private float _speed;
     [SerializeField] private float _cooldownDuration;
     [SerializeField] private int _pierce; // the amount of time the weapon can hit enemy before get destroyed
     [SerializeField] private int _level;
-    [SerializeField] private Sprite _icon;
     [SerializeField] private GameObject _nextLevelPrefab; // The prefab of the next level i.e. what the object becomes when it levels up
                                                           // Not to be confused with the prefab to be spawned at the next level
 
@@ -39,4 +41,10 @@ public class WeaponScriptableObject : ScriptableObject
 
     public GameObject NextLevelPrefab
     { get { return _nextLevelPrefab; } private set { _nextLevelPrefab = value; } }
+
+    public string WeaponName
+    { get { return _weaponName; } private set { _weaponName = value; } }
+
+    public string WeaponDescription
+    { get { return _weaponDescription; } private set { _weaponDescription = value; } }
 }

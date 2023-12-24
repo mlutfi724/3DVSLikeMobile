@@ -1,12 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerStats : MonoBehaviour
 {
     [SerializeField] private CharacterScriptableObject _characterData;
     [SerializeField] public float WeaponSpawnYPos = 0.5f;
+    public GameObject SecondWeaponTest;
+    public GameObject FirstPassiveItemTest, SecondPassiveItemTest;
+    private InventoryManager _inventory;
+    public int WeaponIndex;
+    public int PassiveItemIndex;
 
     // Current Character Stats
 
@@ -151,12 +158,11 @@ public class PlayerStats : MonoBehaviour
     private float _invincibilityTimer;
     private bool _isInvincible;
 
-    private InventoryManager _inventory;
-    public int WeaponIndex;
-    public int PassiveItemIndex;
+    [Header("UI")]
+    public Image HealthBar;
 
-    public GameObject SecondWeaponTest;
-    public GameObject FirstPassiveItemTest, SecondPassiveItemTest;
+    public Image ExpBar;
+    public TextMeshProUGUI LevelText;
 
     //Class for defining a level range and the corresponding experience cap increase for that range
     [System.Serializable]
@@ -179,8 +185,8 @@ public class PlayerStats : MonoBehaviour
         _inventory = GetComponent<InventoryManager>();
 
         SpawnWeaponController(_characterData.StartingWeapon);
-        SpawnWeaponController(SecondWeaponTest);
-        SpawnPassiveItem(FirstPassiveItemTest);
+        //SpawnWeaponController(SecondWeaponTest);
+        //SpawnPassiveItem(FirstPassiveItemTest);
         SpawnPassiveItem(SecondPassiveItemTest);
     }
 
@@ -197,6 +203,11 @@ public class PlayerStats : MonoBehaviour
         GameManager.instance.CurrentMagnetDisplay.text = "Magnet: " + _currentMagnetRadius;
 
         GameManager.instance.AssignChosenCharacterUI(_characterData);
+
+        // Assigning values to UI
+        UpdateHealthBarUI();
+        UpdateExpBarUI();
+        UpdateLevelTextUI();
     }
 
     private void Update()
@@ -273,6 +284,7 @@ public class PlayerStats : MonoBehaviour
             {
                 CurrentHealth = _characterData.MaxHealth;
             }
+            UpdateHealthBarUI();
         }
     }
 
@@ -287,6 +299,7 @@ public class PlayerStats : MonoBehaviour
             {
                 CurrentHealth = _characterData.MaxHealth;
             }
+            UpdateHealthBarUI();
         }
     }
 
@@ -307,13 +320,28 @@ public class PlayerStats : MonoBehaviour
                 }
             }
             ExperienceCap += ExperienceCapIncrease;
+
+            UpdateLevelTextUI();
+
+            GameManager.instance.StartLevelUp();
         }
+    }
+
+    private void UpdateExpBarUI()
+    {
+        ExpBar.fillAmount = (float)Experience / ExperienceCap;
+    }
+
+    private void UpdateLevelTextUI()
+    {
+        LevelText.text = "LV " + Level.ToString();
     }
 
     public void IncreaseExperience(int amount)
     {
         Experience += amount;
         LevelUpChecker();
+        UpdateExpBarUI();
     }
 
     public void PlayerTakeDamage(float dmg)
@@ -330,6 +358,13 @@ public class PlayerStats : MonoBehaviour
             {
                 PlayerDied();
             }
+
+            UpdateHealthBarUI();
         }
+    }
+
+    private void UpdateHealthBarUI()
+    {
+        HealthBar.fillAmount = CurrentHealth / _characterData.MaxHealth;
     }
 }

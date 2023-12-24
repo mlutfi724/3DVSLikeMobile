@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eac2e5888fef3d94a8334994115887f4, type: 3}
   m_Name: ShieldOrbitingWeapon
   m_EditorClassIdentifier: 
+  _icon: {fileID: 21300000, guid: 4097dec1e9a0ede4c85bf4caa28e9bcf, type: 3}
+  _weaponName: Shield Orbit (Weapon)
+  _weaponDescription: Orbiting shield around the player
   _weaponPrefab: {fileID: 4709342763417329196, guid: 93233f0363af35a44a7a994322afa068,
     type: 3}
   _damage: 5
@@ -19,6 +22,5 @@ MonoBehaviour:
   _cooldownDuration: 4
   _pierce: 2
   _level: 1
-  _icon: {fileID: 21300000, guid: 4097dec1e9a0ede4c85bf4caa28e9bcf, type: 3}
   _nextLevelPrefab: {fileID: 1764259057399041569, guid: 469e4a1d37861da4ba3c5a59f1b0e832,
     type: 3}

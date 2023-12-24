@@ -260,7 +260,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3540f21bf033c8441847caccda516095, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CharacterData: {fileID: 11400000, guid: 6457c30232671f142948012ba4773d0a, type: 2}
+  _characterData: {fileID: 11400000, guid: 6457c30232671f142948012ba4773d0a, type: 2}
   WeaponSpawnYPos: 0.5
   Experience: 0
   Level: 1
@@ -272,6 +272,9 @@ MonoBehaviour:
   - StartLevel: 6
     EndLevel: 10
     ExperienceCapIncrease: 200
+  - StartLevel: 11
+    EndLevel: 99999
+    ExperienceCapIncrease: 500
   InvincibilityDuration: 0.5
   WeaponIndex: 0
   PassiveItemIndex: 0
@@ -317,6 +320,9 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  WeaponUpgradeOptions: []
+  PassiveItemUpgradeOptions: []
+  UpgradeUIOptions: []
 --- !u!1 &673967379816433984
 GameObject:
   m_ObjectHideFlags: 0
