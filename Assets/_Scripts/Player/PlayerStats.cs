@@ -4,6 +4,7 @@ using System.Runtime.CompilerServices;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using MoreMountains.Tools;
 
 public class PlayerStats : MonoBehaviour
 {
@@ -14,6 +15,9 @@ public class PlayerStats : MonoBehaviour
     private InventoryManager _inventory;
     public int WeaponIndex;
     public int PassiveItemIndex;
+
+    [Header("Audio SFX")]
+    public AudioClip HitSFX;
 
     [HideInInspector] public Animator Animator;
 
@@ -28,6 +32,11 @@ public class PlayerStats : MonoBehaviour
 
     public int IsHitHash
     { get { return _isHitHash; } }
+
+    private int _isDiedHash;
+
+    public int IsDiedHash
+    { get { return _isDiedHash; } }
 
     // Current Character Stats
 
@@ -203,11 +212,12 @@ public class PlayerStats : MonoBehaviour
         // set the parameter hash
         _isAttackHash = Animator.StringToHash("isAttack");
         _isHitHash = Animator.StringToHash("isHit");
+        _isDiedHash = Animator.StringToHash("isDied");
 
-        //SpawnWeaponController(SecondWeaponTest);
         //SpawnPassiveItem(FirstPassiveItemTest);
+        //SpawnPassiveItem(SecondPassiveItemTest);
         SpawnWeaponController(_characterData.StartingWeapon);
-        SpawnPassiveItem(SecondPassiveItemTest);
+        //SpawnWeaponController(SecondWeaponTest);
     }
 
     private void Start()
@@ -242,8 +252,19 @@ public class PlayerStats : MonoBehaviour
         {
             GameManager.instance.AssignLevelReachedUI(Level);
             GameManager.instance.AssignChosenWeaponAndPassiveItemsUI(_inventory.WeaponUISlots, _inventory.PassiveItemUISlots);
-            GameManager.instance.GameOver();
+            StartCoroutine(PlayerDiedGameOverRoutine());
         }
+    }
+
+    private IEnumerator PlayerDiedGameOverRoutine()
+    {
+        Animator.SetBool(_isDiedHash, true); // Enter the player died animation state
+        PlayerStateMachine playerMovement = GetComponent<PlayerStateMachine>();
+        playerMovement.enabled = false; // disable the player movement
+        MMSoundManagerSoundControlEvent.Trigger(MMSoundManagerSoundControlEventTypes.Free, 270421, playerMovement.WalkSFXAudioSource); // disable the walk sfx
+
+        yield return new WaitForSeconds(1f);
+        GameManager.instance.GameOver();
     }
 
     private void HandleIFrame()
@@ -254,7 +275,7 @@ public class PlayerStats : MonoBehaviour
         }
         else if (_isInvincible) // if the invincibility timer reaches 0 and currently still isInvincible
         {
-            Animator.SetBool(_isHitHash, false);
+            Animator.SetBool(_isHitHash, false); // exit the hit animation state
             _isInvincible = false;
         }
     }
@@ -371,12 +392,12 @@ public class PlayerStats : MonoBehaviour
         if (!_isInvincible)
         {
             CurrentHealth -= dmg;
-
             _invincibilityTimer = InvincibilityDuration;
             _isInvincible = true;
 
             // Handle hit animation
             Animator.SetBool(_isHitHash, true);
+            PlaySFX(HitSFX, 413182);
 
             if (CurrentHealth <= 0)
             {
@@ -390,5 +411,16 @@ public class PlayerStats : MonoBehaviour
     private void UpdateHealthBarUI()
     {
         HealthBar.fillAmount = CurrentHealth / _characterData.MaxHealth;
+    }
+
+    private void PlaySFX(AudioClip sfx, int soundID)
+    {
+        MMSoundManagerPlayOptions options;
+        options = MMSoundManagerPlayOptions.Default;
+        options.Loop = false;
+        options.Volume = 0.7f;
+        options.ID = soundID;
+
+        MMSoundManagerSoundPlayEvent.Trigger(sfx, options);
     }
 }

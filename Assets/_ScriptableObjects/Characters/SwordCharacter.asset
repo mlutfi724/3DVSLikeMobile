@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90f1f0a5818b34b48840fac7def12487, type: 3}
   m_Name: SwordCharacter
   m_EditorClassIdentifier: 
-  _characterIcon: {fileID: 21300000, guid: 832bdf046d821514ca1eb1e48c2772f6, type: 3}
-  _characterName: Curious Doggos
+  _characterIcon: {fileID: 21300000, guid: b91579064a2cafb4db70c220ce4b36a0, type: 3}
+  _characterName: Spinning Knight
   _maxHealth: 1000
   _recovery: 5
   _moveSpeed: 4

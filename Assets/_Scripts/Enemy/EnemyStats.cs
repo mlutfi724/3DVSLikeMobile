@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using MoreMountains.Tools;
 
 public class EnemyStats : MonoBehaviour
 {
@@ -11,6 +12,12 @@ public class EnemyStats : MonoBehaviour
     [HideInInspector] public float CurrentDamage;
 
     public float DespawnDistance = 20f;
+
+    [Header("Audio SFX")]
+    public AudioClip HitSFX;
+
+    public AudioClip DieSFX;
+
     private Transform _playerTransform;
     private EnemyChasing _enemyChasing;
     private Animator _enemyAnimator;
@@ -45,6 +52,7 @@ public class EnemyStats : MonoBehaviour
 
     public void EnemyTakeDamage(float damage, Vector3 sourcePosition, float knockbackForce = 5f, float knockbackDuration = 0.2f)
     {
+        PlaySFX(HitSFX, 413177, 0.6f);
         CurrentHealth -= damage;
 
         _enemyAnimator.CrossFade(HitState, 0.1f, 0, 0);
@@ -58,6 +66,7 @@ public class EnemyStats : MonoBehaviour
 
         if (CurrentHealth <= 0)
         {
+            PlaySFX(DieSFX, 471204, 1f);
             EnemyDied();
         }
     }
@@ -91,5 +100,16 @@ public class EnemyStats : MonoBehaviour
         }
         EnemySpawner enemySpawner = FindObjectOfType<EnemySpawner>();
         enemySpawner.OnEnemyKilled();
+    }
+
+    private void PlaySFX(AudioClip sfx, int soundID, float volume)
+    {
+        MMSoundManagerPlayOptions options;
+        options = MMSoundManagerPlayOptions.Default;
+        options.Loop = false;
+        options.Volume = volume;
+        options.ID = soundID;
+
+        MMSoundManagerSoundPlayEvent.Trigger(sfx, options);
     }
 }

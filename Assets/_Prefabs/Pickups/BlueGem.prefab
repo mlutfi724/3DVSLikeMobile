@@ -126,6 +126,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17f213265407f704ea16c422061c9ff2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CollectSFX: {fileID: 8300000, guid: 671b3d5dd4fc5cd469394930b35e8482, type: 3}
   ExperienceGranted: 20
 --- !u!54 &8625169995260562005
 Rigidbody:

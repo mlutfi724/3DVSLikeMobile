@@ -144,8 +144,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   WeaponStatsData: {fileID: 11400000, guid: d7fcfa8419e0c584ab3669b1d3c1849a, type: 2}
-  _destroyAfterSeconds: 3
-  _rotatingSpeed: 3000
+  _destroyAfterSeconds: 1
+  HitSFX: {fileID: 8300000, guid: 2f874370d64c4bf46a097cd24cffcc49, type: 3}
+  _rotatingSpeed: 2000
+  ProjectileSFX: {fileID: 8300000, guid: 53a3d657599c8444089f4c7ba11a6482, type: 3}
 --- !u!54 &627661455809874935
 Rigidbody:
   m_ObjectHideFlags: 0

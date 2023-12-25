@@ -3,9 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+using System.Security;
+
 // This class is context for the state machine
 public class PlayerStateMachine : MonoBehaviour
 {
+    //Handle sfx variables
+    [Header("Audio")]
+    public AudioClip WalkSFX;
+
+    private AudioSource _walkSFXAudioSource;
+
+    public AudioSource WalkSFXAudioSource
+    { get { return _walkSFXAudioSource; } set { _walkSFXAudioSource = value; } }
+
     // declare reference variables
 
     private CharacterController _characterController;

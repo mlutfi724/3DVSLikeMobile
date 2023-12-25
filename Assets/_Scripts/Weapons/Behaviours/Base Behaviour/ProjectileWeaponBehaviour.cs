@@ -1,3 +1,4 @@
+using MoreMountains.Tools;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +10,9 @@ public class ProjectileWeaponBehaviour : MonoBehaviour
 
     protected Vector3 Direction;
     [SerializeField] private float _destroyAfterSeconds;
+
+    [Header("AudioSFX")]
+    public AudioClip HitSFX;
 
     //Current stats
 
@@ -46,12 +50,14 @@ public class ProjectileWeaponBehaviour : MonoBehaviour
         // Reference the script from the collided collider and deal damage using TakeDamage()
         if (other.CompareTag("Enemy"))
         {
+            PlaySFX(HitSFX, 496191);
             EnemyStats enemy = other.GetComponent<EnemyStats>();
             enemy.EnemyTakeDamage(GetCurrentDamage(), transform.position); // Using CurrentDamage instead of WeaponData.Damage for applying any damage multiplier
             ReducePierce();
         }
         else if (other.CompareTag("Prop"))
         {
+            PlaySFX(HitSFX, 496191);
             if (other.gameObject.TryGetComponent(out BreakableProps breakable))
             {
                 breakable.PropsTakeDamage(GetCurrentDamage());
@@ -67,5 +73,16 @@ public class ProjectileWeaponBehaviour : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    private void PlaySFX(AudioClip sfx, int soundID)
+    {
+        MMSoundManagerPlayOptions options;
+        options = MMSoundManagerPlayOptions.Default;
+        options.Loop = false;
+        options.Volume = 10f;
+        options.ID = soundID;
+
+        MMSoundManagerSoundPlayEvent.Trigger(sfx, options);
     }
 }

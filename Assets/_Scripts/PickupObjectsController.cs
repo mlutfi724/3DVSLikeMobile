@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RotatePickupObjects : MonoBehaviour
+public class PickupObjectsController : MonoBehaviour
 {
     [SerializeField] private float rotateSpeed;
     [SerializeField] private float _pullSpeed = 100f;

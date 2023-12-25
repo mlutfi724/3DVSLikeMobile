@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using MoreMountains.Tools;
 
 // This class is a concrete state
 public class PlayerWalkState : PlayerBaseState
@@ -13,6 +14,7 @@ public class PlayerWalkState : PlayerBaseState
         //Debug.Log("Enter walk state!");
         Ctx.Animator.SetBool(Ctx.IsWalkingHash, true);
         Ctx.Animator.SetBool(Ctx.IsRunningHash, false);
+        PlaySFX();
     }
 
     public override void UpdateState()
@@ -25,6 +27,7 @@ public class PlayerWalkState : PlayerBaseState
     public override void ExitState()
     {
         //Debug.Log("Exit walk state!");
+        StopSFX();
     }
 
     public override void InitializeSubState()
@@ -40,5 +43,21 @@ public class PlayerWalkState : PlayerBaseState
         {
             SwitchState(Factory.Run());
         }
+    }
+
+    private void PlaySFX()
+    {
+        MMSoundManagerPlayOptions options;
+        options = MMSoundManagerPlayOptions.Default;
+        options.Loop = true;
+        options.Volume = 0.5f;
+        options.ID = 270421;
+
+        Ctx.WalkSFXAudioSource = MMSoundManagerSoundPlayEvent.Trigger(Ctx.WalkSFX, options);
+    }
+
+    private void StopSFX()
+    {
+        MMSoundManagerSoundControlEvent.Trigger(MMSoundManagerSoundControlEventTypes.Free, 270421, Ctx.WalkSFXAudioSource);
     }
 }

@@ -257,6 +257,8 @@ MonoBehaviour:
   CurrentHealth: 0
   CurrentDamage: 0
   DespawnDistance: 20
+  HitSFX: {fileID: 8300000, guid: fded30bfad6b8194f838eaa17908fb15, type: 3}
+  DieSFX: {fileID: 8300000, guid: e94272f21367276419d761ab507a29cf, type: 3}
 --- !u!114 &2169747813146525076
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -273,11 +275,11 @@ MonoBehaviour:
   - Name: Blue Gem
     ItemPrefab: {fileID: 9126642742975363503, guid: 601c9ff039e829a4fb09b104d21606b7,
       type: 3}
-    DropRate: 50
+    DropRate: 100
   - Name: Health Gem
     ItemPrefab: {fileID: 768881139618035928, guid: 729982d7f3a0ba044a7a839e4191d8fd,
       type: 3}
-    DropRate: 50
+    DropRate: 100
 --- !u!114 &1382887277
 MonoBehaviour:
   m_ObjectHideFlags: 0

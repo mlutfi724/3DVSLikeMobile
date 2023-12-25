@@ -1,11 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using MoreMountains.Tools;
 
 public class MeleeWeaponBehaviour : MonoBehaviour
 {
     [SerializeField] protected WeaponScriptableObject WeaponStatsData;
     [SerializeField] private float _destroyAfterSeconds;
+
+    [Header("AudioSFX")]
+    public AudioClip MeleeSFX;
 
     protected PlayerStats Player;
 
@@ -41,6 +45,8 @@ public class MeleeWeaponBehaviour : MonoBehaviour
         // Reference the script from the collided collider and deal damage using TakeDamage()
         if (other.CompareTag("Enemy"))
         {
+            Player.Animator.SetBool(Player.IsAttackHash, true);
+            PlaySFX(MeleeSFX, 35213, 0.2f);
             EnemyStats enemy = other.GetComponent<EnemyStats>();
             enemy.EnemyTakeDamage(GetCurrentDamage(), transform.position); // Using CurrentDamage instead of WeaponData.Damage for applying any damage multiplier
         }
@@ -51,5 +57,16 @@ public class MeleeWeaponBehaviour : MonoBehaviour
                 breakable.PropsTakeDamage(GetCurrentDamage());
             }
         }
+    }
+
+    private void PlaySFX(AudioClip sfxClip, int sfxId, float sfxVolume)
+    {
+        MMSoundManagerPlayOptions options;
+        options = MMSoundManagerPlayOptions.Default;
+        options.Loop = false;
+        options.ID = sfxId;
+        options.Volume = sfxVolume;
+
+        MMSoundManagerSoundPlayEvent.Trigger(sfxClip, options);
     }
 }
