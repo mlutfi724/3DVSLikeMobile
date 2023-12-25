@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class EnemyChasing : MonoBehaviour
 {
     private Transform _playerTransform;
-    private NavMeshAgent _enemyAgent;
+
     private EnemyStats _enemyStats;
 
     private Vector3 _knockbackVelocity;
@@ -15,7 +15,6 @@ public class EnemyChasing : MonoBehaviour
     private void Awake()
     {
         _playerTransform = FindObjectOfType<PlayerStateMachine>().transform;
-        _enemyAgent = GetComponent<NavMeshAgent>();
         _enemyStats = GetComponent<EnemyStats>();
     }
 
@@ -36,10 +35,8 @@ public class EnemyChasing : MonoBehaviour
 
     private void ChasePlayer()
     {
-        _enemyAgent.speed = _enemyStats.CurrentMoveSpeed;
-        _enemyAgent.destination = _playerTransform.position;
-
-        //transform.position = Vector3.MoveTowards(transform.position, _playerTransform.position, _enemyStats.CurrentMoveSpeed * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, _playerTransform.position, _enemyStats.CurrentMoveSpeed * Time.deltaTime);
+        transform.LookAt(_playerTransform.position);
     }
 
     //This is meant to be called from other scripts to create knockback

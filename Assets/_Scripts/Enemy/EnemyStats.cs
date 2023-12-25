@@ -13,6 +13,13 @@ public class EnemyStats : MonoBehaviour
     public float DespawnDistance = 20f;
     private Transform _playerTransform;
     private EnemyChasing _enemyChasing;
+    private Animator _enemyAnimator;
+
+    // cache hash values
+    private static readonly int ChaseState = Animator.StringToHash("Base Layer.Chase");
+
+    private static readonly int HitState = Animator.StringToHash("Base Layer.Hit");
+    private static readonly int AttackState = Animator.StringToHash("Base Layer.Attack");
 
     private void Awake()
     {
@@ -25,6 +32,7 @@ public class EnemyStats : MonoBehaviour
     {
         _playerTransform = FindObjectOfType<PlayerStats>().transform;
         _enemyChasing = GetComponent<EnemyChasing>();
+        _enemyAnimator = GetComponent<Animator>();
     }
 
     private void Update()
@@ -39,6 +47,7 @@ public class EnemyStats : MonoBehaviour
     {
         CurrentHealth -= damage;
 
+        _enemyAnimator.CrossFade(HitState, 0.1f, 0, 0);
         //Apply knockback if it is not zero.
         if (knockbackForce > 0)
         {
@@ -68,6 +77,7 @@ public class EnemyStats : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
+            _enemyAnimator.CrossFade(AttackState, 0.1f, 0, 0);
             PlayerStats player = other.gameObject.GetComponent<PlayerStats>();
             player.PlayerTakeDamage(CurrentDamage);
         }
