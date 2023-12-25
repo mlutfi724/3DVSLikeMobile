@@ -40,7 +40,7 @@ public class RotatePickupObjects : MonoBehaviour
     {
         Vector3 forceDirection = (_player.transform.position - transform.position).normalized;
         _objectRb.AddForce(forceDirection * _pullSpeed);
-        Destroy(gameObject, 3f);
+        Destroy(gameObject, 1f);
     }
 
     //Vector3 forceDirection = (transform.position - otherRb.transform.position).normalized;
