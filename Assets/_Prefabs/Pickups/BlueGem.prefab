@@ -126,7 +126,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17f213265407f704ea16c422061c9ff2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ExperienceGranted: 30
+  ExperienceGranted: 20
 --- !u!54 &8625169995260562005
 Rigidbody:
   m_ObjectHideFlags: 0
