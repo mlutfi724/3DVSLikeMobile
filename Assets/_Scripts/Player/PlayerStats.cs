@@ -19,6 +19,8 @@ public class PlayerStats : MonoBehaviour
     [Header("Audio SFX")]
     public AudioClip HitSFX;
 
+    private AudioSource _hitSFXAudioSource;
+
     [HideInInspector] public Animator Animator;
 
     // Hash for animator
@@ -258,10 +260,13 @@ public class PlayerStats : MonoBehaviour
 
     private IEnumerator PlayerDiedGameOverRoutine()
     {
-        Animator.SetBool(_isDiedHash, true); // Enter the player died animation state
+        // Enter the player died animation state
+        Animator.SetBool(_isDiedHash, true);
+        // disable the player movement
         PlayerStateMachine playerMovement = GetComponent<PlayerStateMachine>();
-        playerMovement.enabled = false; // disable the player movement
-        MMSoundManagerSoundControlEvent.Trigger(MMSoundManagerSoundControlEventTypes.Free, 270421, playerMovement.WalkSFXAudioSource); // disable the walk sfx
+        playerMovement.enabled = false;
+        // return the walk sfx to the pool
+        MMSoundManagerSoundControlEvent.Trigger(MMSoundManagerSoundControlEventTypes.Free, 270421, playerMovement.WalkSFXAudioSource);
 
         yield return new WaitForSeconds(1f);
         GameManager.instance.GameOver();
@@ -275,7 +280,10 @@ public class PlayerStats : MonoBehaviour
         }
         else if (_isInvincible) // if the invincibility timer reaches 0 and currently still isInvincible
         {
-            Animator.SetBool(_isHitHash, false); // exit the hit animation state
+            // exit the hit animation state
+            Animator.SetBool(_isHitHash, false);
+            // return the audio source to the pool
+            MMSoundManagerSoundControlEvent.Trigger(MMSoundManagerSoundControlEventTypes.Free, 413182, _hitSFXAudioSource);
             _isInvincible = false;
         }
     }
@@ -397,7 +405,7 @@ public class PlayerStats : MonoBehaviour
 
             // Handle hit animation
             Animator.SetBool(_isHitHash, true);
-            PlaySFX(HitSFX, 413182);
+            PlaySFX(HitSFX, 413182, _hitSFXAudioSource);
 
             if (CurrentHealth <= 0)
             {
@@ -413,7 +421,7 @@ public class PlayerStats : MonoBehaviour
         HealthBar.fillAmount = CurrentHealth / _characterData.MaxHealth;
     }
 
-    private void PlaySFX(AudioClip sfx, int soundID)
+    private void PlaySFX(AudioClip sfx, int soundID, AudioSource sfxAudioSource)
     {
         MMSoundManagerPlayOptions options;
         options = MMSoundManagerPlayOptions.Default;
@@ -421,6 +429,6 @@ public class PlayerStats : MonoBehaviour
         options.Volume = 0.7f;
         options.ID = soundID;
 
-        MMSoundManagerSoundPlayEvent.Trigger(sfx, options);
+        sfxAudioSource = MMSoundManagerSoundPlayEvent.Trigger(sfx, options);
     }
 }

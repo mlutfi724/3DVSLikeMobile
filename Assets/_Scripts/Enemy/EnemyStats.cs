@@ -17,6 +17,9 @@ public class EnemyStats : MonoBehaviour
     public AudioClip HitSFX;
 
     public AudioClip DieSFX;
+    private AudioSource _hitSFXAudioSource;
+
+    private AudioSource _dieSFXAudioSource;
 
     private Transform _playerTransform;
     private EnemyChasing _enemyChasing;
@@ -73,6 +76,7 @@ public class EnemyStats : MonoBehaviour
 
     public void EnemyDied()
     {
+        // return the audio source to the pool
         Destroy(gameObject);
     }
 
@@ -98,6 +102,7 @@ public class EnemyStats : MonoBehaviour
         {
             return;
         }
+
         EnemySpawner enemySpawner = FindObjectOfType<EnemySpawner>();
         enemySpawner.OnEnemyKilled();
     }
@@ -109,6 +114,7 @@ public class EnemyStats : MonoBehaviour
         options.Loop = false;
         options.Volume = volume;
         options.ID = soundID;
+        options.DoNotAutoRecycleIfNotDonePlaying = false;
 
         MMSoundManagerSoundPlayEvent.Trigger(sfx, options);
     }

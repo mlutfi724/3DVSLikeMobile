@@ -1,3 +1,4 @@
+using MoreMountains.Tools;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -63,6 +64,7 @@ public class EnemySpawner : MonoBehaviour
         if (CurrentWaveCount < Waves.Count && Waves[CurrentWaveCount].SpawnCount >= Waves[CurrentWaveCount].WaveQuota && !_isWaveActive && EnemiesAlive == 0)
         {
             Debug.Log("Spawning next wave in 3s!");
+
             StartCoroutine(BeginNextWave());
         }
     }

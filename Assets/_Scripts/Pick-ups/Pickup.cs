@@ -27,7 +27,7 @@ public class Pickup : MonoBehaviour, ICollectible
         MMSoundManagerPlayOptions options;
         options = MMSoundManagerPlayOptions.Default;
         options.ID = 703541;
-
+        options.DoNotAutoRecycleIfNotDonePlaying = false;
         MMSoundManagerSoundPlayEvent.Trigger(CollectSFX, options);
     }
 }
