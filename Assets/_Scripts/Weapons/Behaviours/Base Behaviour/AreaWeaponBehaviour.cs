@@ -1,3 +1,4 @@
+using MoreMountains.Feedbacks;
 using MoreMountains.Tools;
 using System.Collections;
 using System.Collections.Generic;
@@ -11,6 +12,11 @@ public class AreaWeaponBehaviour : MonoBehaviour
 
     [Header("AudioSFX")]
     public AudioClip HitSFX;
+
+    // Feedbacks variable
+    private MMF_Player _feedbackFloatingText;
+
+    private MMF_Player _feedbackCameraShake;
 
     protected PlayerStats Player;
 
@@ -33,6 +39,8 @@ public class AreaWeaponBehaviour : MonoBehaviour
     protected virtual void Start()
     {
         Player = FindObjectOfType<PlayerStats>();
+        _feedbackFloatingText = GameObject.Find("Feedbacks/FloatingText").GetComponent<MMF_Player>();
+        _feedbackCameraShake = GameObject.Find("Feedbacks/CameraShake").GetComponent<MMF_Player>();
         Destroy(gameObject, _destroyAfterSeconds);
     }
 
@@ -47,6 +55,7 @@ public class AreaWeaponBehaviour : MonoBehaviour
         if (other.CompareTag("Enemy"))
         {
             PlaySFX(HitSFX, 420674, 0.5F);
+            HandleFeedbacks();
             EnemyStats enemy = other.GetComponent<EnemyStats>();
             enemy.EnemyTakeDamage(GetCurrentDamage(), transform.position); // Using CurrentDamage instead of WeaponData.Damage for applying any damage multiplier
             ReducePierce();
@@ -56,6 +65,7 @@ public class AreaWeaponBehaviour : MonoBehaviour
             if (other.gameObject.TryGetComponent(out BreakableProps breakable))
             {
                 PlaySFX(HitSFX, 420674, 0.5F);
+                HandleFeedbacks();
                 breakable.PropsTakeDamage(GetCurrentDamage());
                 ReducePierce();
             }
@@ -69,6 +79,12 @@ public class AreaWeaponBehaviour : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    private void HandleFeedbacks()
+    {
+        _feedbackFloatingText.PlayFeedbacks(this.transform.position, GetCurrentDamage() * 10);
+        _feedbackCameraShake.PlayFeedbacks();
     }
 
     private void PlaySFX(AudioClip sfxClip, int sfxId, float sfxVolume)

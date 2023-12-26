@@ -25,6 +25,8 @@ public class PlayerStats : MonoBehaviour
     [Header("Feedbacks")]
     public MMF_Player HitFeedback;
 
+    private MMF_Player _feedbackFloatingText;
+
     [HideInInspector] public Animator Animator;
 
     // Hash for animator
@@ -228,6 +230,9 @@ public class PlayerStats : MonoBehaviour
 
     private void Start()
     {
+        // Get feedback reference
+        _feedbackFloatingText = GameObject.Find("Feedbacks/FloatingText").GetComponent<MMF_Player>();
+
         // initialize the experience cap as the first experience cap increase
         ExperienceCap = LevelRanges[0].ExperienceCapIncrease;
 
@@ -404,12 +409,14 @@ public class PlayerStats : MonoBehaviour
         if (!_isInvincible)
         {
             CurrentHealth -= dmg;
+
             _invincibilityTimer = InvincibilityDuration;
             _isInvincible = true;
 
             // Handle hit animation
             Animator.SetBool(_isHitHash, true);
             HitFeedback?.PlayFeedbacks();
+            _feedbackFloatingText.PlayFeedbacks(this.transform.position, dmg * -1);
             PlaySFX(HitSFX, 413182, _hitSFXAudioSource);
 
             if (CurrentHealth <= 0)

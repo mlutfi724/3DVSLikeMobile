@@ -1,3 +1,4 @@
+using MoreMountains.Feedbacks;
 using MoreMountains.Tools;
 using System.Collections;
 using System.Collections.Generic;
@@ -10,6 +11,11 @@ public class ProjectileWeaponBehaviour : MonoBehaviour
 
     protected Vector3 Direction;
     [SerializeField] private float _destroyAfterSeconds;
+
+    // Feedbacks variable
+    private MMF_Player _feedbackFloatingText;
+
+    private MMF_Player _feedbackCameraShake;
 
     [Header("AudioSFX")]
     public AudioClip HitSFX;
@@ -32,6 +38,8 @@ public class ProjectileWeaponBehaviour : MonoBehaviour
     // Start is called before the first frame update
     protected virtual void Start()
     {
+        _feedbackFloatingText = GameObject.Find("Feedbacks/FloatingText").GetComponent<MMF_Player>();
+        _feedbackCameraShake = GameObject.Find("Feedbacks/CameraShake").GetComponent<MMF_Player>();
         Destroy(gameObject, _destroyAfterSeconds);
     }
 
@@ -51,6 +59,7 @@ public class ProjectileWeaponBehaviour : MonoBehaviour
         if (other.CompareTag("Enemy"))
         {
             PlaySFX(HitSFX, 496191);
+            HandleFeedbacks();
             EnemyStats enemy = other.GetComponent<EnemyStats>();
             enemy.EnemyTakeDamage(GetCurrentDamage(), transform.position); // Using CurrentDamage instead of WeaponData.Damage for applying any damage multiplier
             ReducePierce();
@@ -58,6 +67,7 @@ public class ProjectileWeaponBehaviour : MonoBehaviour
         else if (other.CompareTag("Prop"))
         {
             PlaySFX(HitSFX, 496191);
+            HandleFeedbacks();
             if (other.gameObject.TryGetComponent(out BreakableProps breakable))
             {
                 breakable.PropsTakeDamage(GetCurrentDamage());
@@ -73,6 +83,12 @@ public class ProjectileWeaponBehaviour : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    private void HandleFeedbacks()
+    {
+        _feedbackFloatingText.PlayFeedbacks(this.transform.position, GetCurrentDamage() * 10);
+        _feedbackCameraShake.PlayFeedbacks();
     }
 
     private void PlaySFX(AudioClip sfx, int soundID)
