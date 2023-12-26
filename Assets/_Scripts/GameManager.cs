@@ -83,6 +83,10 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
         DisableScreens();
+    }
+
+    private void Start()
+    {
         PlayBGM();
     }
 
@@ -294,7 +298,7 @@ public class GameManager : MonoBehaviour
 
     private void PlayBGM()
     {
-        MMSoundManagerSoundPlayEvent.Trigger(MusicAudio, MMSoundManager.MMSoundManagerTracks.Music, this.transform.position, persistent: true, loop: true, fade: true, volume: 0.2f);
+        MMSoundManagerSoundPlayEvent.Trigger(MusicAudio, MMSoundManager.MMSoundManagerTracks.Music, this.transform.position, persistent: false, loop: true, fade: true, volume: 0.2f);
     }
 
     private void PlayLevelUpSFX()

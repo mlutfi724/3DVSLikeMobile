@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using MoreMountains.Tools;
+using MoreMountains.Feedbacks;
 
 public class PlayerStats : MonoBehaviour
 {
@@ -20,6 +21,9 @@ public class PlayerStats : MonoBehaviour
     public AudioClip HitSFX;
 
     private AudioSource _hitSFXAudioSource;
+
+    [Header("Feedbacks")]
+    public MMF_Player HitFeedback;
 
     [HideInInspector] public Animator Animator;
 
@@ -219,7 +223,7 @@ public class PlayerStats : MonoBehaviour
         //SpawnPassiveItem(FirstPassiveItemTest);
         //SpawnPassiveItem(SecondPassiveItemTest);
         SpawnWeaponController(_characterData.StartingWeapon);
-        SpawnWeaponController(SecondWeaponTest);
+        //SpawnWeaponController(SecondWeaponTest);
     }
 
     private void Start()
@@ -405,6 +409,7 @@ public class PlayerStats : MonoBehaviour
 
             // Handle hit animation
             Animator.SetBool(_isHitHash, true);
+            HitFeedback?.PlayFeedbacks();
             PlaySFX(HitSFX, 413182, _hitSFXAudioSource);
 
             if (CurrentHealth <= 0)
