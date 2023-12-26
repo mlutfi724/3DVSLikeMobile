@@ -257,7 +257,7 @@ MonoBehaviour:
   CurrentHealth: 0
   CurrentDamage: 0
   DespawnDistance: 20
-  HitSFX: {fileID: 8300000, guid: fded30bfad6b8194f838eaa17908fb15, type: 3}
+  HitSFX: {fileID: 8300000, guid: 48ff1f659bc2c0f4bb0f8b4e09895552, type: 3}
   DieSFX: {fileID: 8300000, guid: e94272f21367276419d761ab507a29cf, type: 3}
 --- !u!114 &2169747813146525076
 MonoBehaviour:

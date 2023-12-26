@@ -55,7 +55,7 @@ public class EnemyStats : MonoBehaviour
 
     public void EnemyTakeDamage(float damage, Vector3 sourcePosition, float knockbackForce = 5f, float knockbackDuration = 0.2f)
     {
-        PlaySFX(HitSFX, 413177, 0.6f);
+        PlaySFX(HitSFX, 420674, 0.6f);
         CurrentHealth -= damage;
 
         _enemyAnimator.CrossFade(HitState, 0.1f, 0, 0);

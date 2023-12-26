@@ -219,7 +219,7 @@ public class PlayerStats : MonoBehaviour
         //SpawnPassiveItem(FirstPassiveItemTest);
         //SpawnPassiveItem(SecondPassiveItemTest);
         SpawnWeaponController(_characterData.StartingWeapon);
-        //SpawnWeaponController(SecondWeaponTest);
+        SpawnWeaponController(SecondWeaponTest);
     }
 
     private void Start()

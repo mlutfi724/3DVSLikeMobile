@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: WingsPassiveItem Level 2
   m_EditorClassIdentifier: 
   _icon: {fileID: 21300000, guid: 6f6648c32a819be4a87ef3bad2807bad, type: 3}
-  _passiveItemName: Boots Level 2
-  _passiveItemDescription: 'Increase 75% move speed '
+  _passiveItemName: Boots Level 2 (Passive)
+  _passiveItemDescription: Increase move speed by 75%
   _multiplier: 75
   _level: 2
   _nextLevelPrefab: {fileID: 0}

@@ -1,3 +1,4 @@
+using MoreMountains.Tools;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +8,9 @@ public class AreaWeaponBehaviour : MonoBehaviour
 {
     [SerializeField] protected WeaponScriptableObject WeaponStatsData;
     [SerializeField] private float _destroyAfterSeconds;
+
+    [Header("AudioSFX")]
+    public AudioClip HitSFX;
 
     protected PlayerStats Player;
 
@@ -42,6 +46,7 @@ public class AreaWeaponBehaviour : MonoBehaviour
         // Reference the script from the collided collider and deal damage using TakeDamage()
         if (other.CompareTag("Enemy"))
         {
+            PlaySFX(HitSFX, 420674, 0.5F);
             EnemyStats enemy = other.GetComponent<EnemyStats>();
             enemy.EnemyTakeDamage(GetCurrentDamage(), transform.position); // Using CurrentDamage instead of WeaponData.Damage for applying any damage multiplier
             ReducePierce();
@@ -50,6 +55,7 @@ public class AreaWeaponBehaviour : MonoBehaviour
         {
             if (other.gameObject.TryGetComponent(out BreakableProps breakable))
             {
+                PlaySFX(HitSFX, 420674, 0.5F);
                 breakable.PropsTakeDamage(GetCurrentDamage());
                 ReducePierce();
             }
@@ -63,5 +69,17 @@ public class AreaWeaponBehaviour : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    private void PlaySFX(AudioClip sfxClip, int sfxId, float sfxVolume)
+    {
+        MMSoundManagerPlayOptions options;
+        options = MMSoundManagerPlayOptions.Default;
+        options.Loop = false;
+        options.ID = sfxId;
+        options.Volume = sfxVolume;
+        options.DoNotAutoRecycleIfNotDonePlaying = false;
+
+        MMSoundManagerSoundPlayEvent.Trigger(sfxClip, options);
     }
 }

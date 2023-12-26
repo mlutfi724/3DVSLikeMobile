@@ -113,7 +113,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad4b817f370bf3a47b9ec9f506d113bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CollectSFX: {fileID: 8300000, guid: 671b3d5dd4fc5cd469394930b35e8482, type: 3}
+  CollectSFX: {fileID: 8300000, guid: 007be1944b943924db124d1fffb7eea8, type: 3}
   HealthToRestore: 100
 --- !u!54 &5947779398945468712
 Rigidbody:

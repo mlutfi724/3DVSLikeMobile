@@ -66,6 +66,7 @@ public class MeleeWeaponBehaviour : MonoBehaviour
         options.Loop = false;
         options.ID = sfxId;
         options.Volume = sfxVolume;
+        options.DoNotAutoRecycleIfNotDonePlaying = false;
 
         MMSoundManagerSoundPlayEvent.Trigger(sfxClip, options);
     }

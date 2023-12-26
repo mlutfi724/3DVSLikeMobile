@@ -145,6 +145,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WeaponStatsData: {fileID: 11400000, guid: e3032f462fcce704799e8fd8ed9e000c, type: 2}
   _destroyAfterSeconds: 3
+  HitSFX: {fileID: 8300000, guid: 2f874370d64c4bf46a097cd24cffcc49, type: 3}
+  ShieldOrbitSFX: {fileID: 8300000, guid: d8c978ba483fec4408adc4d276f0ea6f, type: 3}
 --- !u!54 &1639905186011428508
 Rigidbody:
   m_ObjectHideFlags: 0

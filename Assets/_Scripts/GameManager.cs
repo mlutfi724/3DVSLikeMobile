@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
+using MoreMountains.Tools;
+using UnityEngine.Rendering;
 
 public class GameManager : MonoBehaviour
 {
@@ -31,6 +33,11 @@ public class GameManager : MonoBehaviour
 
     // Flag to check if player are choosing their upgrades
     public bool IsChoosingUpgrade;
+
+    [Header("BGM Audio")]
+    public AudioClip MusicAudio;
+
+    public AudioClip LevelUpSFX;
 
     [Header("Screens UI")]
     [SerializeField] private GameObject _pauseScreen;
@@ -76,6 +83,7 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
         DisableScreens();
+        PlayBGM();
     }
 
     private void Update()
@@ -97,6 +105,7 @@ public class GameManager : MonoBehaviour
 
             case GameState.LevelUp:
                 // code for the level up state
+
                 if (!IsChoosingUpgrade)
                 {
                     IsChoosingUpgrade = true;
@@ -271,6 +280,7 @@ public class GameManager : MonoBehaviour
     public void StartLevelUp()
     {
         ChangeState(GameState.LevelUp);
+        PlayLevelUpSFX();
         PlayerObject.SendMessage("RemoveAndApplyUpgrades");
     }
 
@@ -280,5 +290,21 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1;
         _levelUpScreen.SetActive(false);
         ChangeState(GameState.Gameplay);
+    }
+
+    private void PlayBGM()
+    {
+        MMSoundManagerSoundPlayEvent.Trigger(MusicAudio, MMSoundManager.MMSoundManagerTracks.Music, this.transform.position, persistent: true, loop: true, fade: true, volume: 0.2f);
+    }
+
+    private void PlayLevelUpSFX()
+    {
+        MMSoundManagerPlayOptions options;
+        options = MMSoundManagerPlayOptions.Default;
+        options.Loop = false;
+        options.Volume = 1f;
+        options.DoNotAutoRecycleIfNotDonePlaying = false;
+
+        MMSoundManagerSoundPlayEvent.Trigger(LevelUpSFX, options);
     }
 }

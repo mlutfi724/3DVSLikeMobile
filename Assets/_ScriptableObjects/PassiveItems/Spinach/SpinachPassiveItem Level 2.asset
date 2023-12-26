@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12723653d7c5de247b4d655d3012c60f, type: 3}
   m_Name: SpinachPassiveItem Level 2
   m_EditorClassIdentifier: 
-  _icon: {fileID: 21300000, guid: 54f8589e2ef2f7a4e875a51ae49b1e7b, type: 3}
-  _passiveItemName: Dagger level 2
-  _passiveItemDescription: Increase 150% weapon damage!
+  _icon: {fileID: 21300000, guid: f66c057114b8725409847a8a8e83a75b, type: 3}
+  _passiveItemName: 'Mighty Ring Level 2 (Passive) '
+  _passiveItemDescription: Increase damage by 150%
   _multiplier: 150
   _level: 2
   _nextLevelPrefab: {fileID: 0}
