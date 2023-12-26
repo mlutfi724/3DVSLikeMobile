@@ -3067,7 +3067,7 @@ MonoBehaviour:
     - EnemyPrefab: {fileID: 1271364766124650679, guid: de072521f92438f45a4c72d40a05ff12,
         type: 3}
       EnemyName: White Ghost
-      EnemyCount: 50
+      EnemyCount: 3
       SpawnCount: 0
     WaveQuota: 0
     SpawnInterval: 1
@@ -3077,12 +3077,12 @@ MonoBehaviour:
     - EnemyPrefab: {fileID: 1271364766124650679, guid: d29043e3a97d4d747912f90193e13ad0,
         type: 3}
       EnemyName: Purple Ghost
-      EnemyCount: 30
+      EnemyCount: 5
       SpawnCount: 0
     - EnemyPrefab: {fileID: 1271364766124650679, guid: de072521f92438f45a4c72d40a05ff12,
         type: 3}
       EnemyName: White Ghost
-      EnemyCount: 70
+      EnemyCount: 10
       SpawnCount: 0
     WaveQuota: 0
     SpawnInterval: 1
@@ -3090,7 +3090,7 @@ MonoBehaviour:
   CurrentWaveCount: 0
   WaveInterval: 3
   EnemiesAlive: 0
-  MaxEnemiesAllowed: 100
+  MaxEnemiesAllowed: 30
   IsMaxEnemiesReached: 0
   RelativeSpawnPoints:
   - {fileID: 1830630040}
@@ -5176,13 +5176,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 661174829}
-  m_LocalRotation: {x: 0.46410665, y: -0.00000003408003, z: 0.000000017856332, w: 0.8857793}
+  m_LocalRotation: {x: 0.46410665, y: 0.00000003408004, z: -0.000000017856335, w: 0.8857793}
   m_LocalPosition: {x: -3.08, y: 15, z: -33.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &661174833
 MonoBehaviour:
@@ -7079,7 +7079,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -84, y: -350}
+  m_AnchoredPosition: {x: -167, y: -350}
   m_SizeDelta: {x: 40, y: 40}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &930521798
@@ -9656,7 +9656,7 @@ Transform:
   - {fileID: 1510960102}
   - {fileID: 771077286}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!1 &1280909286
 GameObject:
@@ -13111,8 +13111,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -2581}
-  m_SizeDelta: {x: 1558.1, y: 100}
+  m_AnchoredPosition: {x: 0, y: -159.04}
+  m_SizeDelta: {x: 1615, y: 100}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1694760032
 MonoBehaviour:
@@ -13750,14 +13750,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1807482109}
-  m_LocalRotation: {x: 0.46410665, y: -0.00000003408003, z: 0.000000017856332, w: 0.8857793}
+  m_LocalRotation: {x: 0.46410665, y: 0.00000003408004, z: -0.000000017856335, w: 0.8857793}
   m_LocalPosition: {x: -3.08, y: 15, z: -33.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1600196898}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!1 &1808927579
 GameObject:
@@ -16201,6 +16201,11 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 661174831}
+    - target: {fileID: 740301174, guid: d163e146847ad7248aec79fab715d211, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 29114078ffdf3ad46a63ea39321bcc5b,
+        type: 3}
     - target: {fileID: 467682088103338276, guid: d163e146847ad7248aec79fab715d211,
         type: 3}
       propertyPath: m_Name
@@ -16359,7 +16364,7 @@ PrefabInstance:
     - target: {fileID: 952048207809362846, guid: d163e146847ad7248aec79fab715d211,
         type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 952048207809362846, guid: d163e146847ad7248aec79fab715d211,
         type: 3}
@@ -16547,7 +16552,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6090941375047353053
 MonoBehaviour:

@@ -45,15 +45,11 @@ public class EnemySpawner : MonoBehaviour
     {
         _playerTransform = FindObjectOfType<PlayerStats>().transform;
         CalculateWaveQuota();
+        //SpawnEnemies();
     }
 
     private void Update()
     {
-        if (CurrentWaveCount < Waves.Count && Waves[CurrentWaveCount].SpawnCount == 0 && !_isWaveActive) //Check if the wave has ended spawning and the next wave should start spawning
-        {
-            StartCoroutine(BeginNextWave());
-        }
-
         _spawnTimer += Time.deltaTime;
 
         // check if its time to spawn the next enemies
@@ -62,6 +58,13 @@ public class EnemySpawner : MonoBehaviour
             _spawnTimer = 0;
             SpawnEnemies();
         }
+
+        //if (CurrentWaveCount < Waves.Count && Waves[CurrentWaveCount].SpawnCount == 0 && !_isWaveActive) //Check if the wave has ended spawning and the next wave should start spawning
+        if (CurrentWaveCount < Waves.Count && Waves[CurrentWaveCount].SpawnCount >= Waves[CurrentWaveCount].WaveQuota && !_isWaveActive && EnemiesAlive == 0)
+        {
+            Debug.Log("Spawning next wave in 3s!");
+            StartCoroutine(BeginNextWave());
+        }
     }
 
     private IEnumerator BeginNextWave()
@@ -69,7 +72,7 @@ public class EnemySpawner : MonoBehaviour
         _isWaveActive = true;
         //Wave for waveInterval seconds before starting the next wave.
         yield return new WaitForSeconds(WaveInterval);
-
+        Debug.Log("Spawning next wave!");
         // If there are more waves to start after the current wave, move on to the next wave
         if (CurrentWaveCount < Waves.Count - 1)
         {
