@@ -17,7 +17,7 @@ MonoBehaviour:
   _weaponDescription: Throw sword at forward direction.
   _weaponPrefab: {fileID: 7598368534864682059, guid: c7ddb12905ea2aa44909ea866bd673f8,
     type: 3}
-  _damage: 5
+  _damage: 150
   _speed: 20
   _cooldownDuration: 1
   _pierce: 1

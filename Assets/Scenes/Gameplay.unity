@@ -3497,7 +3497,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 6d62ab0bd6240c040bb125b47eee0ec9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5d35ab975d6af88468d063e407f56126, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3692,7 +3692,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: THIS GAME PROTOTYPE IS DEVELOPED BY MUHAMMAD LUTFI ABDUL AZIZ
+  m_text: THIS DEMO PROTOTYPE IS DEVELOPED BY MUHAMMAD LUTFI ABDUL AZIZ
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3719,8 +3719,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 45
-  m_fontSizeBase: 45
+  m_fontSize: 35
+  m_fontSizeBase: 35
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -5523,7 +5523,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 661174829}
-  m_LocalRotation: {x: 0.46410665, y: -0.00000003408003, z: 0.000000017856332, w: 0.8857793}
+  m_LocalRotation: {x: 0.46410665, y: 0.00000003408004, z: -0.000000017856335, w: 0.8857793}
   m_LocalPosition: {x: -3.08, y: 11.2, z: -33.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -10717,7 +10717,7 @@ MonoBehaviour:
           m_DissipationMode: 2
           m_DissipationDistance: 100
           m_PropagationSpeed: 343
-        Velocity: {x: 2, y: 2, z: 2}
+        Velocity: {x: 1, y: 1, z: 1}
         ClearImpulseOnStop: 0
 --- !u!1 &1298887044
 GameObject:
@@ -14104,7 +14104,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: bff433fa88a92eb4dbdab16572cf91ab, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6d62ab0bd6240c040bb125b47eee0ec9, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -14721,7 +14721,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1807482109}
-  m_LocalRotation: {x: 0.46410665, y: -0.00000003408003, z: 0.000000017856332, w: 0.8857793}
+  m_LocalRotation: {x: 0.46410665, y: 0.00000003408004, z: -0.000000017856335, w: 0.8857793}
   m_LocalPosition: {x: -3.08, y: 11.2, z: -33.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

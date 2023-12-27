@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _icon: {fileID: 21300000, guid: 1ff1175d56df9eb4f8cfa0ba429d9254, type: 3}
   _weaponName: Sword Projectile Level 2
-  _weaponDescription: Increasing the fire rate by 50%.
+  _weaponDescription: Reduce cooldown by 50%
   _weaponPrefab: {fileID: 7598368534864682059, guid: 2a7ced9cb4e084b4187ef5a535b3574a,
     type: 3}
-  _damage: 3
+  _damage: 150
   _speed: 20
   _cooldownDuration: 1.5
   _pierce: 1

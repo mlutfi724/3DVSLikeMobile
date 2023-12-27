@@ -102,17 +102,6 @@
                 },
                 {
                     "name": "",
-                    "id": "0e8fa489-6b7f-4d9c-a659-06fbc0c6a937",
-                    "path": "<Keyboard>/leftShift",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Run",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "8e7265ed-4ef7-47fc-8f4e-d7149efccfe1",
                     "path": "<Gamepad>/rightShoulder",
                     "interactions": "",
