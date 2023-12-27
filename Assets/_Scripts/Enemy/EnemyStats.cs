@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using MoreMountains.Tools;
+using MoreMountains.Feedbacks;
 
 public class EnemyStats : MonoBehaviour
 {
@@ -11,15 +12,17 @@ public class EnemyStats : MonoBehaviour
     [HideInInspector] public float CurrentHealth;
     [HideInInspector] public float CurrentDamage;
 
+    // Feedbacks variable
+    private MMF_Player _feedbackFloatingText;
+
+    private MMF_Player _feedbackCameraShake;
+
     public float DespawnDistance = 20f;
 
     [Header("Audio SFX")]
     public AudioClip HitSFX;
 
     public AudioClip DieSFX;
-    private AudioSource _hitSFXAudioSource;
-
-    private AudioSource _dieSFXAudioSource;
 
     private Transform _playerTransform;
     private EnemyChasing _enemyChasing;
@@ -40,6 +43,8 @@ public class EnemyStats : MonoBehaviour
 
     private void Start()
     {
+        _feedbackFloatingText = GameObject.Find("Feedbacks/FloatingText").GetComponent<MMF_Player>();
+        _feedbackCameraShake = GameObject.Find("Feedbacks/CameraShake").GetComponent<MMF_Player>();
         _playerTransform = FindObjectOfType<PlayerStats>().transform;
         _enemyChasing = GetComponent<EnemyChasing>();
         _enemyAnimator = GetComponent<Animator>();
@@ -56,7 +61,10 @@ public class EnemyStats : MonoBehaviour
     public void EnemyTakeDamage(float damage, Vector3 sourcePosition, float knockbackForce = 5f, float knockbackDuration = 0.2f)
     {
         PlaySFX(HitSFX, 420674, 0.6f);
+
         CurrentHealth -= damage;
+        _feedbackFloatingText.PlayFeedbacks(transform.position, damage);
+        _feedbackCameraShake.PlayFeedbacks();
 
         _enemyAnimator.CrossFade(HitState, 0.1f, 0, 0);
         //Apply knockback if it is not zero.

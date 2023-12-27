@@ -3669,7 +3669,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 89.8}
+  m_AnchoredPosition: {x: 0, y: 89.799805}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &480141283
@@ -5523,7 +5523,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 661174829}
-  m_LocalRotation: {x: 0.46410665, y: 0.00000003408004, z: -0.000000017856335, w: 0.8857793}
+  m_LocalRotation: {x: 0.46410665, y: -0.00000003408003, z: 0.000000017856332, w: 0.8857793}
   m_LocalPosition: {x: -3.08, y: 11.2, z: -33.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -6645,7 +6645,7 @@ MonoBehaviour:
   TargetCamera: {fileID: 0}
   AnimateScale: 1
   RemapScaleZero: {x: 0, y: 0}
-  RemapScaleOne: {x: 1, y: 1}
+  RemapScaleOne: {x: 0.5, y: 0.5}
   AnimateScaleCurve:
     serializedVersion: 2
     m_Curve:
@@ -13619,7 +13619,7 @@ MonoBehaviour:
   - {fileID: 691919117}
   - {fileID: 1549630329}
   - {fileID: 1884712021}
-  TimeLimit: 120
+  TimeLimit: 300
   StopwatchDisplay: {fileID: 906007928}
 --- !u!4 &1540994844
 Transform:
@@ -14721,7 +14721,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1807482109}
-  m_LocalRotation: {x: 0.46410665, y: 0.00000003408004, z: -0.000000017856335, w: 0.8857793}
+  m_LocalRotation: {x: 0.46410665, y: -0.00000003408003, z: 0.000000017856332, w: 0.8857793}
   m_LocalPosition: {x: -3.08, y: 11.2, z: -33.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -17126,10 +17126,35 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 234494082, guid: d163e146847ad7248aec79fab715d211, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 234494082, guid: d163e146847ad7248aec79fab715d211, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 234494082, guid: d163e146847ad7248aec79fab715d211, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 234494082, guid: d163e146847ad7248aec79fab715d211, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 234494082, guid: d163e146847ad7248aec79fab715d211, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 90
+      objectReference: {fileID: 0}
     - target: {fileID: 234494085, guid: d163e146847ad7248aec79fab715d211, type: 3}
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 661174831}
+    - target: {fileID: 740301174, guid: d163e146847ad7248aec79fab715d211, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 29114078ffdf3ad46a63ea39321bcc5b,
+        type: 3}
     - target: {fileID: 467682088103338276, guid: d163e146847ad7248aec79fab715d211,
         type: 3}
       propertyPath: m_Name

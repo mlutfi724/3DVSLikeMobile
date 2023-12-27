@@ -14,11 +14,6 @@ public class MeleeWeaponBehaviour : MonoBehaviour
 
     protected PlayerStats Player;
 
-    // Feedbacks variable
-    private MMF_Player _feedbackFloatingText;
-
-    private MMF_Player _feedbackCameraShake;
-
     //Current Stats
 
     protected float CurrentDamage;
@@ -38,8 +33,7 @@ public class MeleeWeaponBehaviour : MonoBehaviour
     protected virtual void Start()
     {
         Player = FindObjectOfType<PlayerStats>();
-        _feedbackFloatingText = GameObject.Find("Feedbacks/FloatingText").GetComponent<MMF_Player>();
-        _feedbackCameraShake = GameObject.Find("Feedbacks/CameraShake").GetComponent<MMF_Player>();
+
         Destroy(gameObject, _destroyAfterSeconds);
     }
 
@@ -55,7 +49,7 @@ public class MeleeWeaponBehaviour : MonoBehaviour
         {
             Player.Animator.SetBool(Player.IsAttackHash, true);
             PlaySFX(MeleeSFX, 35213, 0.2f);
-            HandleFeedbacks();
+
             EnemyStats enemy = other.GetComponent<EnemyStats>();
             enemy.EnemyTakeDamage(GetCurrentDamage(), transform.position); // Using CurrentDamage instead of WeaponData.Damage for applying any damage multiplier
         }
@@ -78,11 +72,5 @@ public class MeleeWeaponBehaviour : MonoBehaviour
         options.DoNotAutoRecycleIfNotDonePlaying = false;
 
         MMSoundManagerSoundPlayEvent.Trigger(sfxClip, options);
-    }
-
-    private void HandleFeedbacks()
-    {
-        _feedbackFloatingText.PlayFeedbacks(this.transform.position, GetCurrentDamage() * 10);
-        _feedbackCameraShake.PlayFeedbacks();
     }
 }

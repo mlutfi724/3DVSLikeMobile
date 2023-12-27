@@ -13,11 +13,6 @@ public class AreaWeaponBehaviour : MonoBehaviour
     [Header("AudioSFX")]
     public AudioClip HitSFX;
 
-    // Feedbacks variable
-    private MMF_Player _feedbackFloatingText;
-
-    private MMF_Player _feedbackCameraShake;
-
     protected PlayerStats Player;
 
     //Current Stats
@@ -39,8 +34,7 @@ public class AreaWeaponBehaviour : MonoBehaviour
     protected virtual void Start()
     {
         Player = FindObjectOfType<PlayerStats>();
-        _feedbackFloatingText = GameObject.Find("Feedbacks/FloatingText").GetComponent<MMF_Player>();
-        _feedbackCameraShake = GameObject.Find("Feedbacks/CameraShake").GetComponent<MMF_Player>();
+
         Destroy(gameObject, _destroyAfterSeconds);
     }
 
@@ -54,19 +48,19 @@ public class AreaWeaponBehaviour : MonoBehaviour
         // Reference the script from the collided collider and deal damage using TakeDamage()
         if (other.CompareTag("Enemy"))
         {
-            PlaySFX(HitSFX, 420674, 0.5F);
-            HandleFeedbacks();
             EnemyStats enemy = other.GetComponent<EnemyStats>();
             enemy.EnemyTakeDamage(GetCurrentDamage(), transform.position); // Using CurrentDamage instead of WeaponData.Damage for applying any damage multiplier
+            PlaySFX(HitSFX, 420674, 0.5F);
+
             ReducePierce();
         }
         else if (other.CompareTag("Prop"))
         {
             if (other.gameObject.TryGetComponent(out BreakableProps breakable))
             {
-                PlaySFX(HitSFX, 420674, 0.5F);
-                HandleFeedbacks();
                 breakable.PropsTakeDamage(GetCurrentDamage());
+                PlaySFX(HitSFX, 420674, 0.5F);
+
                 ReducePierce();
             }
         }
@@ -79,12 +73,6 @@ public class AreaWeaponBehaviour : MonoBehaviour
         {
             Destroy(gameObject);
         }
-    }
-
-    private void HandleFeedbacks()
-    {
-        _feedbackFloatingText.PlayFeedbacks(this.transform.position, GetCurrentDamage() * 10);
-        _feedbackCameraShake.PlayFeedbacks();
     }
 
     private void PlaySFX(AudioClip sfxClip, int sfxId, float sfxVolume)
