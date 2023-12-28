@@ -11,8 +11,13 @@ public class PlayerStats : MonoBehaviour
 {
     [SerializeField] private CharacterScriptableObject _characterData;
     [SerializeField] public float WeaponSpawnYPos = 0.5f;
+
+    [Header("Testing")]
     public GameObject SecondWeaponTest;
+
     public GameObject FirstPassiveItemTest, SecondPassiveItemTest;
+    public bool IsTesting = false;
+
     private InventoryManager _inventory;
     public int WeaponIndex;
     public int PassiveItemIndex;
@@ -222,10 +227,14 @@ public class PlayerStats : MonoBehaviour
         _isHitHash = Animator.StringToHash("isHit");
         _isDiedHash = Animator.StringToHash("isDied");
 
-        //SpawnPassiveItem(FirstPassiveItemTest);
-        //SpawnPassiveItem(SecondPassiveItemTest);
         SpawnWeaponController(_characterData.StartingWeapon);
-        //SpawnWeaponController(SecondWeaponTest);
+
+        if (IsTesting)
+        {
+            SpawnPassiveItem(FirstPassiveItemTest);
+            SpawnPassiveItem(SecondPassiveItemTest);
+            SpawnWeaponController(SecondWeaponTest);
+        }
     }
 
     private void Start()

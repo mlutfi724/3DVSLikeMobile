@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _characterIcon: {fileID: 21300000, guid: b91579064a2cafb4db70c220ce4b36a0, type: 3}
   _characterName: Spinning Knight
-  _maxHealth: 1000
-  _recovery: 5
+  _maxHealth: 100
+  _recovery: 0.5
   _moveSpeed: 4
   _might: 1
   _projectileSpeed: 0

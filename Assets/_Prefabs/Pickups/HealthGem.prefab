@@ -114,7 +114,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CollectSFX: {fileID: 8300000, guid: 007be1944b943924db124d1fffb7eea8, type: 3}
-  HealthToRestore: 100
+  HealthToRestore: 20
 --- !u!54 &5947779398945468712
 Rigidbody:
   m_ObjectHideFlags: 0

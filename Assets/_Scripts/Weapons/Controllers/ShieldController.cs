@@ -19,5 +19,6 @@ public class ShieldController : WeaponController
     private void SpawnShield()
     {
         GameObject spawnedShield = Instantiate(WeaponStatsData.WeaponPrefab);
+        spawnedShield.transform.position = transform.position;
     }
 }
