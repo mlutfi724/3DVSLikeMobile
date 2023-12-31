@@ -8,6 +8,11 @@ public class EnemyStats : MonoBehaviour
 {
     [SerializeField] private EnemyScriptableObject _enemyData;
 
+    // enemy renderer
+    [SerializeField] private GameObject _enemyRenderer;
+
+    private Color _enemyOriginalColor;
+
     [HideInInspector] public float CurrentMoveSpeed;
     [HideInInspector] public float CurrentHealth;
     [HideInInspector] public float CurrentDamage;
@@ -43,6 +48,9 @@ public class EnemyStats : MonoBehaviour
 
     private void Start()
     {
+        _enemyOriginalColor = _enemyRenderer.GetComponent<SkinnedMeshRenderer>().material.GetColor("_MainColor");
+
+        // Handle other reference
         _feedbackFloatingText = GameObject.Find("Feedbacks/FloatingText").GetComponent<MMF_Player>();
         _feedbackCameraShake = GameObject.Find("Feedbacks/CameraShake").GetComponent<MMF_Player>();
         _playerTransform = FindObjectOfType<PlayerStats>().transform;
@@ -61,7 +69,7 @@ public class EnemyStats : MonoBehaviour
     public void EnemyTakeDamage(float damage, Vector3 sourcePosition, float knockbackForce = 5f, float knockbackDuration = 0.2f)
     {
         PlaySFX(HitSFX, 420674, 0.6f);
-
+        StartCoroutine(EnemyDamageFlashRoutine());
         CurrentHealth -= damage;
         _feedbackFloatingText.PlayFeedbacks(transform.position, damage);
         _feedbackCameraShake.PlayFeedbacks();
@@ -80,6 +88,13 @@ public class EnemyStats : MonoBehaviour
             PlaySFX(DieSFX, 471204, 1f);
             EnemyDied();
         }
+    }
+
+    private IEnumerator EnemyDamageFlashRoutine()
+    {
+        _enemyRenderer.GetComponent<SkinnedMeshRenderer>().material.SetColor("_MainColor", Color.red);
+        yield return new WaitForSeconds(.5f);
+        _enemyRenderer.GetComponent<SkinnedMeshRenderer>().material.SetColor("_MainColor", _enemyOriginalColor);
     }
 
     public void EnemyDied()

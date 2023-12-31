@@ -253,6 +253,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemyData: {fileID: 11400000, guid: 511e86c53c54cbe43ba9d685daa321f4, type: 2}
+  _enemyRenderer: {fileID: 838797580607512427}
   CurrentMoveSpeed: 0
   CurrentHealth: 0
   CurrentDamage: 0
