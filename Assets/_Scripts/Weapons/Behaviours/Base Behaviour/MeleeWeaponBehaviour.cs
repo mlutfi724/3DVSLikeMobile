@@ -49,7 +49,7 @@ public class MeleeWeaponBehaviour : MonoBehaviour
         {
             Player.Animator.SetBool(Player.IsAttackHash, true);
             PlaySFX(MeleeSFX, 35213, 0.2f);
-
+            Player.PlayerIframe();
             EnemyStats enemy = other.GetComponent<EnemyStats>();
             enemy.EnemyTakeDamage(GetCurrentDamage(), transform.position); // Using CurrentDamage instead of WeaponData.Damage for applying any damage multiplier
         }

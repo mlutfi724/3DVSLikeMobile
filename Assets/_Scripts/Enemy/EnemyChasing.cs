@@ -5,6 +5,7 @@ using UnityEngine.AI;
 
 public class EnemyChasing : MonoBehaviour
 {
+    [SerializeField] private float _enemyYPos;
     private Transform _playerTransform;
 
     private EnemyStats _enemyStats;
@@ -37,6 +38,10 @@ public class EnemyChasing : MonoBehaviour
     {
         transform.position = Vector3.MoveTowards(transform.position, _playerTransform.position, _enemyStats.CurrentMoveSpeed * Time.deltaTime);
         transform.LookAt(_playerTransform.position);
+        if (transform.position.y < 0)
+        {
+            transform.position = new Vector3(transform.position.x, _enemyYPos, transform.position.z);
+        }
     }
 
     //This is meant to be called from other scripts to create knockback

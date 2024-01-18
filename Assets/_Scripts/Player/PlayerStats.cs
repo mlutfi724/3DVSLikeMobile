@@ -419,8 +419,7 @@ public class PlayerStats : MonoBehaviour
         {
             CurrentHealth -= dmg;
 
-            _invincibilityTimer = InvincibilityDuration;
-            _isInvincible = true;
+            PlayerIframe();
 
             // Handle hit animation
             Animator.SetBool(_isHitHash, true);
@@ -435,6 +434,12 @@ public class PlayerStats : MonoBehaviour
 
             UpdateHealthBarUI();
         }
+    }
+
+    public void PlayerIframe()
+    {
+        _invincibilityTimer = InvincibilityDuration;
+        _isInvincible = true;
     }
 
     private void UpdateHealthBarUI()

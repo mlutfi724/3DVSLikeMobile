@@ -16,7 +16,7 @@ public class SwordProjectileBehaviour : ProjectileWeaponBehaviour
     {
         base.Start();
         Player = FindObjectOfType<PlayerStats>();
-        PlaySFX(ProjectileSFX, 222608, 0.1f);
+        PlaySFX(ProjectileSFX, 222608, 1f);
         transform.position = new Vector3(Player.transform.position.x, Player.transform.position.y + 0.7f, Player.transform.position.z); // make the weapon spawn at the perfect height
     }
 
