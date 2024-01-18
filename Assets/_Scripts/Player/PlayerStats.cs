@@ -12,6 +12,9 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] private CharacterScriptableObject _characterData;
     [SerializeField] public float WeaponSpawnYPos = 0.5f;
 
+    // player basic weapon
+    private BasicMeleeAttack _basicMeleeAttack;
+
     [Header("Testing")]
     public GameObject SecondWeaponTest;
 
@@ -242,6 +245,9 @@ public class PlayerStats : MonoBehaviour
         // Get feedback reference
         _feedbackFloatingText = GameObject.Find("Feedbacks/FloatingText").GetComponent<MMF_Player>();
 
+        // Basic weapon reference
+        _basicMeleeAttack = FindObjectOfType<BasicMeleeAttack>();
+
         // initialize the experience cap as the first experience cap increase
         ExperienceCap = LevelRanges[0].ExperienceCapIncrease;
 
@@ -456,5 +462,16 @@ public class PlayerStats : MonoBehaviour
         options.ID = soundID;
 
         sfxAudioSource = MMSoundManagerSoundPlayEvent.Trigger(sfx, options);
+    }
+
+    // for melee attack animation events
+    public void StartMeleeAttack()
+    {
+        _basicMeleeAttack.EnableCollider();
+    }
+
+    public void EndMeleeAttack()
+    {
+        _basicMeleeAttack.DisableCollider();
     }
 }

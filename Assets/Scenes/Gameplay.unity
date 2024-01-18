@@ -594,6 +594,57 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 59498064}
   m_CullTransparentMesh: 1
+--- !u!1 &62957833 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8659337967578137746, guid: d163e146847ad7248aec79fab715d211,
+    type: 3}
+  m_PrefabInstance: {fileID: 2749036526033940141}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &62957835
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 62957833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01e18d43f62a9cd41b52a88903f671e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WeaponStatsData: {fileID: 11400000, guid: 19352d80518800549bfa69a19a289156, type: 2}
+  _destroyAfterSeconds: 0
+  MeleeSFX: {fileID: 8300000, guid: 743f80049289b4246b724e8afa92822f, type: 3}
+--- !u!64 &62957836
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 62957833}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: -1
+  m_Mesh: {fileID: -4692214948189147205, guid: de392f919a34e4e4c94a6e77ef08a22d, type: 3}
+--- !u!54 &62957837
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 62957833}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &65605136
 GameObject:
   m_ObjectHideFlags: 0

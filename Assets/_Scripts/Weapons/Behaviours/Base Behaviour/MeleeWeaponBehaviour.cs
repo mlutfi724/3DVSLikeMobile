@@ -33,8 +33,6 @@ public class MeleeWeaponBehaviour : MonoBehaviour
     protected virtual void Start()
     {
         Player = FindObjectOfType<PlayerStats>();
-
-        Destroy(gameObject, _destroyAfterSeconds);
     }
 
     public float GetCurrentDamage()
@@ -47,30 +45,21 @@ public class MeleeWeaponBehaviour : MonoBehaviour
         // Reference the script from the collided collider and deal damage using TakeDamage()
         if (other.CompareTag("Enemy"))
         {
-            Player.Animator.SetBool(Player.IsAttackHash, true);
-            PlaySFX(MeleeSFX, 35213, 0.2f);
-            Player.PlayerIframe();
-            EnemyStats enemy = other.GetComponent<EnemyStats>();
-            enemy.EnemyTakeDamage(GetCurrentDamage(), transform.position); // Using CurrentDamage instead of WeaponData.Damage for applying any damage multiplier
+            StartCoroutine(AttackAnimationRoutine());
         }
         else if (other.CompareTag("Prop"))
         {
             if (other.gameObject.TryGetComponent(out BreakableProps breakable))
             {
-                breakable.PropsTakeDamage(GetCurrentDamage());
+                StartCoroutine(AttackAnimationRoutine());
             }
         }
     }
 
-    private void PlaySFX(AudioClip sfxClip, int sfxId, float sfxVolume)
+    private IEnumerator AttackAnimationRoutine()
     {
-        MMSoundManagerPlayOptions options;
-        options = MMSoundManagerPlayOptions.Default;
-        options.Loop = false;
-        options.ID = sfxId;
-        options.Volume = sfxVolume;
-        options.DoNotAutoRecycleIfNotDonePlaying = false;
-
-        MMSoundManagerSoundPlayEvent.Trigger(sfxClip, options);
+        Player.Animator.SetBool(Player.IsAttackHash, true);
+        yield return new WaitForSeconds(0.533f);
+        Player.Animator.SetBool(Player.IsAttackHash, false);
     }
 }
