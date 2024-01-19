@@ -40,7 +40,7 @@ public class AreaWeaponBehaviour : MonoBehaviour
 
     public float GetCurrentDamage()
     {
-        return CurrentDamage *= Player.CurrentMight;
+        return CurrentDamage = WeaponStatsData.Damage * Player.CurrentMight;
     }
 
     protected virtual void OnTriggerEnter(Collider other)
