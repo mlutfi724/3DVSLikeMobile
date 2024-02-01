@@ -18,16 +18,17 @@ public class BasicMeleeAttack : MeleeWeaponBehaviour
     // Start is called before the first frame update
     protected override void Start()
     {
-        base.Start();
+        Player = FindObjectOfType<PlayerStats>();
         _meshCollider = GetComponent<MeshCollider>();
         _meshCollider.enabled = false;
     }
 
-    protected virtual void OnTriggerEnter(Collider other)
+    protected override void OnTriggerEnter(Collider other)
     {
         // Reference the script from the collided collider and deal damage using TakeDamage()
         if (other.CompareTag("Enemy"))
         {
+            PlaySFX(MeleeSFX, 35213, 0.2f);
             EnemyStats enemy = other.GetComponent<EnemyStats>();
             enemy.EnemyTakeDamage(GetCurrentDamage(), transform.position); // Using CurrentDamage instead of WeaponData.Damage for applying any damage multiplier
         }
@@ -35,9 +36,22 @@ public class BasicMeleeAttack : MeleeWeaponBehaviour
         {
             if (other.gameObject.TryGetComponent(out BreakableProps breakable))
             {
+                PlaySFX(MeleeSFX, 35213, 0.2f);
                 breakable.PropsTakeDamage(GetCurrentDamage());
             }
         }
+    }
+
+    private void PlaySFX(AudioClip sfxClip, int sfxId, float sfxVolume)
+    {
+        MMSoundManagerPlayOptions options;
+        options = MMSoundManagerPlayOptions.Default;
+        options.Loop = false;
+        options.ID = sfxId;
+        options.Volume = sfxVolume;
+        options.DoNotAutoRecycleIfNotDonePlaying = false;
+
+        MMSoundManagerSoundPlayEvent.Trigger(sfxClip, options);
     }
 
     public void EnableCollider()

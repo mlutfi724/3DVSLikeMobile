@@ -43,7 +43,7 @@ public class ProjectileWeaponBehaviour : MonoBehaviour
 
     public float GetCurrentDamage()
     {
-        return CurrentDamage = WeaponStatsData.Damage * FindObjectOfType<PlayerStats>().CurrentMight;
+        return CurrentDamage *= FindObjectOfType<PlayerStats>().CurrentMight;
     }
 
     protected virtual void OnTriggerEnter(Collider other)
@@ -85,7 +85,6 @@ public class ProjectileWeaponBehaviour : MonoBehaviour
         options.Loop = false;
         options.Volume = 10f;
         options.ID = soundID;
-        options.DoNotAutoRecycleIfNotDonePlaying = false;
 
         MMSoundManagerSoundPlayEvent.Trigger(sfx, options);
     }

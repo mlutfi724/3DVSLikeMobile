@@ -20,7 +20,7 @@ public class EnemyStats : MonoBehaviour
     // Feedbacks variable
     private MMF_Player _feedbackFloatingText;
 
-    private MMF_Player _feedbackHit;
+    private MMF_Player _feedbackCameraShake;
 
     public float DespawnDistance = 20f;
 
@@ -51,8 +51,8 @@ public class EnemyStats : MonoBehaviour
         _enemyOriginalColor = _enemyRenderer.GetComponent<SkinnedMeshRenderer>().material.GetColor("_MainColor");
 
         // Handle other reference
-        _feedbackFloatingText = GameObject.Find("Feedbacks/EnemyTakeDMGFloatingText").GetComponent<MMF_Player>();
-        _feedbackHit = GameObject.Find("Feedbacks/HitFeedback").GetComponent<MMF_Player>();
+        _feedbackFloatingText = GameObject.Find("Feedbacks/FloatingText").GetComponent<MMF_Player>();
+        _feedbackCameraShake = GameObject.Find("Feedbacks/CameraShake").GetComponent<MMF_Player>();
         _playerTransform = FindObjectOfType<PlayerStats>().transform;
         _enemyChasing = GetComponent<EnemyChasing>();
         _enemyAnimator = GetComponent<Animator>();
@@ -72,7 +72,7 @@ public class EnemyStats : MonoBehaviour
         StartCoroutine(EnemyDamageFlashRoutine());
         CurrentHealth -= damage;
         _feedbackFloatingText.PlayFeedbacks(transform.position, damage);
-        _feedbackHit.PlayFeedbacks();
+        _feedbackCameraShake.PlayFeedbacks();
 
         _enemyAnimator.CrossFade(HitState, 0.1f, 0, 0);
         //Apply knockback if it is not zero.

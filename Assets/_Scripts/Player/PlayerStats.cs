@@ -243,7 +243,7 @@ public class PlayerStats : MonoBehaviour
     private void Start()
     {
         // Get feedback reference
-        _feedbackFloatingText = GameObject.Find("Feedbacks/PlayerTakeDMGFloatingText").GetComponent<MMF_Player>();
+        _feedbackFloatingText = GameObject.Find("Feedbacks/FloatingText").GetComponent<MMF_Player>();
 
         // Basic weapon reference
         _basicMeleeAttack = FindObjectOfType<BasicMeleeAttack>();
@@ -430,7 +430,7 @@ public class PlayerStats : MonoBehaviour
             // Handle hit animation
             Animator.SetBool(_isHitHash, true);
             HitFeedback?.PlayFeedbacks();
-            _feedbackFloatingText.PlayFeedbacks(transform.position, dmg * -1);
+            _feedbackFloatingText.PlayFeedbacks(this.transform.position, dmg * -1);
             PlaySFX(HitSFX, 413182, _hitSFXAudioSource);
 
             if (CurrentHealth <= 0)
